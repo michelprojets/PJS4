@@ -1,0 +1,13 @@
+/* style css */
+
+/* --------------------------------------------- Menu --------------------------------------------------- */
+
+header nav .container-fluid ul li a span {
+	padding-right:10px;
+}
+
+header nav .container-fluid {
+	padding-top:25px;
+	padding-bottom:25px;
+
+}
