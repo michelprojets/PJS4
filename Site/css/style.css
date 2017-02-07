@@ -1,5 +1,13 @@
 /* style css */
 
+/* --------------------------------------------- Général ------------------------------------------------ */
+
+body {
+	background-image:url("../images/background.png");
+	background-size:100%;
+	background-attachment:fixed;
+}
+
 /* --------------------------------------------- Menu --------------------------------------------------- */
 
 header nav .container-fluid ul li a span {
@@ -7,7 +15,41 @@ header nav .container-fluid ul li a span {
 }
 
 header nav .container-fluid {
+/*	display:none; */
 	padding-top:25px;
 	padding-bottom:25px;
+}
 
+/* --------------------------------------------- Carousel ----------------------------------------------- */
+
+#carousel-example-generic {
+	display:inline-block;
+}
+
+/* --------------------------------------------- Barre de navigation ------------------------------------ */
+
+#barre_recherche {
+	margin-top:15%;
+	height:50%;
+}
+
+/* --------------------------------------------- Footer ------------------------------------------------- */
+
+footer .navbar {
+	margin-bottom:0;
+}
+
+/*
+footer .list-group-item {
+	border-color:black;
+	background-color:black;
+}
+*/
+
+footer ul {
+	margin:auto;
+}
+
+footer p {
+	color:white;
 }
