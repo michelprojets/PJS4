@@ -1,5 +1,7 @@
 /* style css */
 
+/*********************************************** Layout ***************************************************/
+
 /* --------------------------------------------- Général ------------------------------------------------ */
 
 body {
@@ -20,36 +22,137 @@ header nav .container-fluid {
 	padding-bottom:25px;
 }
 
-/* --------------------------------------------- Carousel ----------------------------------------------- */
-
-#carousel-example-generic {
-	display:inline-block;
+#active {
+	color:white;
 }
+
+@media screen and (max-width: 768px)
+{
+    header ul {
+		display:none;
+	}
+}
+
+/* --------------------------------------------- Footer ------------------------------------------------- */
+
+footer p {
+	color:#AAAAAA;
+	text-align:center;
+}
+
+/*********************************************** Page accueil *********************************************/
 
 /* --------------------------------------------- Barre de navigation ------------------------------------ */
 
 #barre_recherche {
 	margin-top:15%;
+	margin-bottom:5%;
 	height:50%;
 }
 
-/* --------------------------------------------- Footer ------------------------------------------------- */
-
-footer .navbar {
-	margin-bottom:0;
+@media screen and (max-width: 992px)
+{
+	#barre_recherche {
+		margin-top:25%;
+	}
 }
 
-/*
-footer .list-group-item {
-	border-color:black;
+@media screen and (max-width: 768px)
+{
+	#barre_recherche {
+		margin-top:25%;
+	}
+	
+	#barre_recherche button {
+		width:20%;
+		margin-left:40%;
+	}
+}
+
+@media screen and (max-width: 500px)
+{
+	#barre_recherche {
+		margin-top:45%;
+	}
+}
+
+/* --------------------------------------------- Carousel ----------------------------------------------- */
+
+#carousel-example-generic {
+	display:inline-block;
+	margin-bottom:20%;
+}
+
+/*********************************************** Page inscription *****************************************/
+
+/* --------------------------------------------- Formulaire d'inscription ------------------------------- */
+
+#formulaire{
+	margin-top:20%;
+	margin-bottom:20%;
+}
+
+#formulaire legend{
+	color:#EEEEEE;
+}
+
+.well{
+	background-color:rgba(100,100,100,0.7);
+}
+
+#formulaire label{
+	color:#EEEEEE;
+}
+
+#formulaire span{
+	color:yellow;
+}
+
+#formulaire .form-group .info-bulle {
+	margin-bottom:3%;
+}
+
+#formulaire .btn-primary{
 	background-color:black;
-}
-*/
-
-footer ul {
-	margin:auto;
+	border-color:#AAAAAA;
+	color:#AAAAAA;
 }
 
-footer p {
+#formulaire .btn-primary:hover{
+	background-color:#353535;
 	color:white;
 }
+
+/* s'affichera si correct */
+#formulaire .correct{
+	border-color:blue;
+}
+
+
+/* s'affichera (avec JS) si erreur */
+#formulaire .problem{
+	border-color:yellow;
+}
+
+@media screen and (max-width: 992px)
+{
+	#formulaire{
+		margin-top:30%;
+	}
+}
+
+@media screen and (max-width: 768px)
+{
+	#formulaire button{
+		width:100%;
+	}
+}
+
+@media screen and (max-width: 500px)
+{
+	#formulaire{
+		margin-top:45%;
+	}
+}
+
+
