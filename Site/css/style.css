@@ -134,7 +134,7 @@ footer p {
 	color:white;
 }
 
-/* s'affichera si correct */
+/* s'affichera (avec JS) si correct */
 #formulaire .correct{
 	border-color:blue;
 }
@@ -154,6 +154,10 @@ footer p {
 
 @media screen and (max-width: 768px)
 {
+	#formulaire{
+		margin-top:10%;
+	}
+	
 	#formulaire button{
 		width:100%;
 	}
@@ -162,7 +166,7 @@ footer p {
 @media screen and (max-width: 500px)
 {
 	#formulaire{
-		margin-top:45%;
+		margin-top:5%;
 	}
 }
 
