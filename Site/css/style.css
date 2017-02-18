@@ -28,8 +28,12 @@ header nav .container-fluid {
 
 @media screen and (max-width: 768px)
 {
-    header ul {
-		display:none;
+	.navbar-fixed-top {
+		position:relative;
+	}
+	
+	.navbar-nav li{
+		text-align:center;
 	}
 }
 
@@ -60,7 +64,7 @@ footer p {
 @media screen and (max-width: 768px)
 {
 	#barre_recherche {
-		margin-top:25%;
+		margin-top:10%;
 	}
 	
 	#barre_recherche button {
@@ -72,7 +76,7 @@ footer p {
 @media screen and (max-width: 500px)
 {
 	#barre_recherche {
-		margin-top:45%;
+		margin-top:5%;
 	}
 }
 
@@ -81,6 +85,13 @@ footer p {
 #carousel-example-generic {
 	display:inline-block;
 	margin-bottom:20%;
+}
+
+@media screen and (max-width: 500px)
+{
+	#carousel-example-generic {
+		margin-bottom:30%;
+	}
 }
 
 /*********************************************** Page inscription *****************************************/
