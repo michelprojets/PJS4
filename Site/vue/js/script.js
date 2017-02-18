@@ -21,16 +21,4 @@
 })();
 
 
-// fonction anonyme qui fait apparaître le menu (en dessous de 768px = xm) si on passe la souris sur la barre de menu en haut
-// (NE FONCTIONNE PAS)
-/*
-(function(){
-	var menu = document.querySelectorAll("header nav");
-	var elemsMenu = document.querySelectorAll("header navul");
-	menu.addEventListener('mouseover', function(){
-		for (var i=0; i<elemsMenu.length; ++i){
-			elemsMenu[i].style.display = "block";
-		}
-	});
-})();
-*/
+// fonction anonyme qui permet de 
