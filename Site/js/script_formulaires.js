@@ -1,21 +1,21 @@
-/* script js */
+ï»¿/* script js */
 
 /* POUR LES FORMULAIRES */
 
-// fonction anonyme qui permet de vérifier les champs saisis
+// fonction anonyme qui permet de vÃ©rifier les champs saisis
 
 (function(){
 	
-	function reset(){ // pour reinitialiser l'état du formulaire
+	function reset(){ // pour reinitialiser l'Ã©tat du formulaire
 		var infobulles = document.querySelectorAll(".info-bulle");
 		var controles = document.querySelectorAll(".controle");
 		for (var i=0; i<infobulles.length; ++i){
 			infobulles[i].style.display="none";
-			controles[i].style.marginBottom="3%"; // car le margin des infos bulles disparaissent après le none
+			controles[i].style.marginBottom="3%"; // car le margin des infos bulles disparaissent aprÃ¨s le none
 		}
 	}
 			
-	var fonctions_controle = {}; // tableau qui va stocker toutes les fonctions de contrôle
+	var fonctions_controle = {}; // tableau qui va stocker toutes les fonctions de contrÃ´le
 	
 	function getInfoBulle(noeud){ // pour obtenir l'info-bulle correspondant au champ de saisi
 		while (noeud = noeud.nextElementSibling){
@@ -30,19 +30,19 @@
 			getInfoBulle(champ.parentNode).style.display = "none";
 			champ.classList.remove("problem");
 			champ.classList.add("correct");
-			champ.parentNode.style.marginBottom="3%"; // car le margin des infos bulles disparaissent après le none
+			champ.parentNode.style.marginBottom="3%"; // car le margin des infos bulles disparaissent aprÃ¨s le none
 			return true;
 		}
 		else { // sinon, champ invalide
 			getInfoBulle(champ.parentNode).style.display = "block";
 			champ.classList.remove("correct");
 			champ.classList.add("problem");
-			champ.parentNode.style.marginBottom="0%"; // car le margin des infos bulles apparaissent après le block
+			champ.parentNode.style.marginBottom="0%"; // car le margin des infos bulles apparaissent aprÃ¨s le block
 			return false;
 		}
 	}
 	
-	// l'ensemble des fonctions de contrôle
+	// l'ensemble des fonctions de contrÃ´le
 	
 	fonctions_controle['login'] = function(){
 		var champ = document.getElementsByName("login")[0];
@@ -65,13 +65,13 @@
 	
 	fonctions_controle['nom'] = function(){
 		var champ = document.getElementsByName("nom")[0];
-		var regex = /^[a-zA-Zéèùîà]{2,35}$/;
+		var regex = /^[a-zA-ZÃ©Ã¨Ã¹Ã®Ã Ã´]{2,35}$/;
 		return modification_interactif(champ,regex.test(champ.value));
 	};
 	
 	fonctions_controle['prenom'] = function(){
 		var champ = document.getElementsByName("prenom")[0];
-		var regex = /^[a-zA-Zéèùîà]{2,35}$/;
+		var regex = /^[a-zA-ZÃ©Ã¨Ã¹Ã®Ã Ã´]{2,35}$/;
 		return modification_interactif(champ,regex.test(champ.value));
 	};
 	
@@ -91,7 +91,8 @@
 	
 	fonctions_controle['sexe'] = function(){
 		var champ = document.getElementById("sexe");
-		var etatChamp = !(champ.options[champ.selectedIndex].innerHTML=="Sélectionner votre sexe");
+		var etatChamp = !(champ.options[champ.selectedIndex].innerHTML=="SÃ©lectionner votre sexe");
+		console.log(etatChamp);
 		return modification_interactif(champ,etatChamp);
 	};
 	
@@ -101,26 +102,26 @@
 		
 		var formulaire = document.getElementById("formulaire").firstElementChild;
 		var champsSaisie = document.querySelectorAll("input[type=text], input[type=password], input[type=date]");
-		for (var i=0; i<champsSaisie.length; ++i){ // on ajoute un événement à chaque saisi des zones de saisie
+		for (var i=0; i<champsSaisie.length; ++i){ // on ajoute un Ã©vÃ©nement Ã  chaque saisi des zones de saisie
 			champsSaisie[i].addEventListener("keyup",function(e){
 				fonctions_controle[e.target.name]();
 			});
 		}
 		
 		formulaire.addEventListener("submit",function(e){ // si on valide le formulaire
-			e.preventDefault(); // pour désactiver l'envoi (par défaut) du formulaire
+			e.preventDefault(); // pour dÃ©sactiver l'envoi (par dÃ©faut) du formulaire
 			var etatForm = true;
 		//	var submitButton = document.querySelector("button[type=submit]");
 			for (var nameIndex in fonctions_controle){
-				etatForm = fonctions_controle[nameIndex]() && etatForm; // on lance toutes les fonctions (et on modifie éventuellement etatForm)
+				etatForm = fonctions_controle[nameIndex]() && etatForm; // on lance toutes les fonctions (et on modifie Ã©ventuellement etatForm)
 			}
-		//	submitButton.disabled = etatForm?"false":"true"; // le bouton est désactivé si c'est mal rempli
-			if (etatForm) { alert("formulaire bien rempli"); }; // à enlever plus tard
+		//	submitButton.disabled = etatForm?"false":"true"; // le bouton est dÃ©sactivÃ© si c'est mal rempli
+			if (etatForm) { alert("formulaire bien rempli"); }; // Ã  enlever plus tard
 		});
 		
 		formulaire.addEventListener("reset",function(){ // si on reset le formulaire
 			for (var i=0; i<champsSaisie.length; ++i){
-				champsSaisie[i].classList.remove("problem"); // on reinitialise tous les états graphiques
+				champsSaisie[i].classList.remove("problem"); // on reinitialise tous les Ã©tats graphiques
 			}
 			reset();
 		});
@@ -128,6 +129,6 @@
 		
 	})();
 	
-	reset(); // on enlève toutes les info-bulles au début
+	reset(); // on enlÃ¨ve toutes les info-bulles au dÃ©but
 	
 })();

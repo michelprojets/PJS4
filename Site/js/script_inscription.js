@@ -1,8 +1,8 @@
-/* script js */
+ï»¿/* script js */
 
 /* PAGE INSCRIPTION */
 
-// fonction anonyme qui permet d'écrire l'année maximum dans le champ date de naissance
+// fonction anonyme qui permet d'Ã©crire l'annÃ©e maximum dans le champ date de naissance
 
 var ageMin = 5;
 var ageMax = 80;
