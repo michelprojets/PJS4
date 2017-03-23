@@ -13,11 +13,13 @@
 		<title>Let's LAN</title>
 		<!--- css bootstrap --->
 		<link rel="stylesheet" href="vue/css/bootstrap.min.css">
+		<!--- css google --->
+		<link href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/themes/ui-darkness/jquery-ui.min.css" rel="stylesheet">
 		<!--- css personnalisé --->
 		<link rel="stylesheet" href="vue/css/style.css">
 	</head>
 	<body>
-		<div class="container"> <!--- container général --->
+		<div id="page" class="container"> <!--- container général --->
 			<header class=""> <!--- header --->
 				<nav class="navbar navbar-inverse navbar-fixed-top">
 					<div class="container"> <!--- container du menu --->
@@ -45,6 +47,12 @@
 		
 		</div> <!--- fin container général --->
 		
+		<!--- javascript jquery --->
+		<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+		<!--- javascript personnalisé --->
+		<script src="vue/js/script.js"></script>
+		
 		<footer> <!--- footer --->
 			<nav class="navbar navbar-inverse navbar-fixed-bottom">
 				<li>
@@ -52,9 +60,6 @@
 				</li>
 			</nav>
 		</footer> <!--- fin footer --->
-		
-		<!--- javascript personnalisé --->
-		<script src="js/script.js"></script>
 		
 	</body>
 </html>

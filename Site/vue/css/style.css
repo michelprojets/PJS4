@@ -2,7 +2,7 @@
 
 /*********************************************** Layout ***************************************************/
 
-/* --------------------------------------------- GÈnÈral ------------------------------------------------ */
+/* --------------------------------------------- G√©n√©ral ------------------------------------------------ */
 
 * {
 	margin:0;
@@ -38,13 +38,33 @@ header nav .container-fluid {
 		padding-left:0%;
 		padding-right:0%;
 	}
-	
+
 	.navbar-fixed-top {
 		position:relative;
 	}
-	
+
 	.navbar-nav li{
 		text-align:center;
+	}
+}
+
+/* --------------------------------------------- Page --------------------------------------------------- */
+
+body #page{
+	margin-bottom:10%;
+}
+
+@media screen and (max-width: 768px)
+{
+	body #page{
+		margin-bottom:10%;
+	}
+}
+
+@media screen and (max-width: 500px)
+{
+	body #page{
+		margin-bottom:25%;
 	}
 }
 
@@ -77,7 +97,7 @@ footer p {
 	#barre_recherche {
 		margin-top:10%;
 	}
-	
+
 	#barre_recherche button {
 		width:20%;
 		margin-left:40%;
@@ -102,6 +122,56 @@ footer p {
 {
 	#carousel-example-generic {
 		margin-bottom:30%;
+	}
+}
+
+/* --------------------------------------------- Affichage r√©sultats recherche -------------------------- */
+
+#lans_recherche .lan{
+	margin-bottom: 5%;
+	padding-top:2%;
+	padding-bottom:2%;
+	background-color:rgba(100,100,100,0.9);
+}
+
+#lans_recherche .lan span, blockquote{
+
+	color:#EEEEEE;
+}
+
+#lans_recherche .lan blockquote{
+	margin-top: 5%;
+}
+
+#lans_recherche #aucun_resultat{
+	margin-top: 15%;
+}
+
+#lans_recherche #aucun_resultat span{
+	padding-top:5%;
+	padding-bottom:5%;
+	text-align: center;
+}
+
+#lans_recherche .mouse-over {
+	background-color: rgba(100,100,100,0.7);
+	border-width:4px;
+	border-color:white;
+	border-style:solid;
+}
+
+@media screen and (max-width: 768px)
+{
+	#lans_recherche .lan span {
+		display: block;
+		text-align: center;
+	}
+}
+
+@media screen and (max-width: 500px)
+{
+	#lans_recherche .lan #description {
+		display: none;
 	}
 }
 
@@ -168,7 +238,7 @@ footer p {
 	#formulaire{
 		margin-top:10%;
 	}
-	
+
 	#formulaire button{
 		width:100%;
 	}

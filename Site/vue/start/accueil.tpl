@@ -1,8 +1,9 @@
-		<div id="barre_recherche""> <!--- barre de recherche --->
+
+		<div id="barre_recherche" onclick="startAuto()"> <!--- barre de recherche --->
 			<input type="search" class="col-sm-offset-3 col-sm-6 col-xs-12" placeholder="Tapez ici pour rechercher une LAN ...">
 			<button type="submit" class="btn btn-primary btn-sm "><span class="glyphicon glyphicon-search "></span></button>
 		</div> <!--- fin barre de recherche --->
-			
+
 		<div id="carousel-example-generic" class="carousel slide col-md-offset-1 col-md-10" data-ride="carousel"> <!--- carousel --->
 			<ol class="carousel-indicators">
 				<li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
@@ -33,10 +34,12 @@
 				<span class="glyphicon glyphicon-chevron-right"></span>
 			</a>
 		</div> <!--- fin carousel --->
-			
-	</div> <!--- fin container général --->
-	
-	<!--- javascript bootstrap --->
-	<script src="vue/js/jquery.min.js"></script>
-	<script src="vue/js/carousel.js"></script>
-	<script src="vue/js/transition.js"></script>
+
+		<div id="lans_recherche" class="col-sm-offset-1 col-sm-10"></div>
+
+		<!--- javascript bootstrap --->
+		<script src="vue/js/jquery.min.js"></script>
+		<script src="vue/js/carousel.js"></script>
+		<script src="vue/js/transition.js"></script>
+		<!--- javascript personnalisé --->
+		<script src="vue/js/script_autocompletion.js" </script>

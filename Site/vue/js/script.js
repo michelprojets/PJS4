@@ -19,6 +19,3 @@
 		e.target.style.fontSize="";
 	}
 })();
-
-
-// fonction anonyme qui permet de 
