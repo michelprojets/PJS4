@@ -74,7 +74,6 @@ var listeUtilisateurs = [];
 	};
 	
 	fonctions_controle['loginDejaPris'] = function(){
-		console.log(listeUtilisateurs[0].Pseudo);
 		var champ = document.getElementsByName("login")[0];
 		var etatChamp = true;
 		$.each(listeUtilisateurs, function(i){

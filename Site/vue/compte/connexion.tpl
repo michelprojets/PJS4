@@ -10,6 +10,7 @@
 							<input class="form-control" type="text" name="login" placeholder="Votre login">
 						</div>
 						<span class="col-sm-offset-4 col-sm-7 info-bulle">Entre 3 et 15 cactères, comporte uniquement lettres (minuscules ou majuscules mais sans accents), chiffres, ou "_"</span>
+						<span id="loginMdpIncorrect" class="col-sm-offset-4 col-sm-7 info-bulle">Login ou mot de passe incorrect</span>
 					</div>
 					<div class="form-group">
 						<label class="col-sm-offset-1 col-sm-3" for="mdp">Mot de passe :</label>
@@ -26,5 +27,7 @@
 			</form>
 		</div> <!--- fin formulaire --->
 		
+		<!--- javascript jquery --->
+		<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 		<!--- javascript personnalisé --->
 		<script src="vue/js/script_connexion.js"></script>
