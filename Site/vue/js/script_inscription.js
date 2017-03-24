@@ -10,9 +10,17 @@ var date = new Date();
 var annee_min_naissance = date.getFullYear()-ageMax;
 var annee_max_naissance = date.getFullYear()-ageMin; // minimum 5 ans
 
+var listeUtilisateurs = [];
+
 (function(){
 	var span_naissance = document.getElementsByName("date_naissance")[0].parentNode.nextElementSibling;
 	span_naissance.innerHTML += " " + annee_min_naissance + " et " + annee_max_naissance + " (vous devez avoir entre " + ageMin + " et " + ageMax + " ans)";
+})();
+
+(function(){
+	$.getJSON("index.php?controle=compte&action=getUtilisateurs", function(data){
+		listeUtilisateurs = data;
+	});
 })();
 
 // fonction anonyme qui permet de vérifier les champs saisis
@@ -24,6 +32,8 @@ var annee_max_naissance = date.getFullYear()-ageMin; // minimum 5 ans
 		var controles = document.querySelectorAll(".controle");
 		for (var i=0; i<infobulles.length; ++i){
 			infobulles[i].style.display="none";
+		}
+		for (var i=0; i<controles.length; ++i){
 			controles[i].style.marginBottom="3%"; // car le margin des infos bulles disparaissent après le none
 		}
 	}
@@ -56,13 +66,37 @@ var annee_max_naissance = date.getFullYear()-ageMin; // minimum 5 ans
 	}
 
 	// l'ensemble des fonctions de contrôle
-
+	
 	fonctions_controle['login'] = function(){
 		var champ = document.getElementsByName("login")[0];
 		var regex = /^[a-zA-Z0-9_]{3,15}$/;
 		return modification_interactif(champ,regex.test(champ.value));
 	};
-
+	
+	fonctions_controle['loginDejaPris'] = function(){
+		console.log(listeUtilisateurs[0].Pseudo);
+		var champ = document.getElementsByName("login")[0];
+		var etatChamp = true;
+		$.each(listeUtilisateurs, function(i){
+			if (listeUtilisateurs[i].Pseudo == champ.value){
+				etatChamp = false;
+			}
+		});
+		if (etatChamp){ // si true, champ valide
+			document.getElementById("loginDejaPris").style.display = "none";
+			champ.classList.remove("problem");
+			champ.classList.add("correct");
+			return true;
+		}
+		else { // sinon, champ invalide
+			document.getElementById("loginDejaPris").style.display = "block";
+			champ.classList.remove("correct");
+			champ.classList.add("problem");
+			champ.parentNode.style.marginBottom="0%";
+			return false;
+		}
+	};
+	
 	fonctions_controle['mdp'] = function(){
 		var champ = document.getElementsByName("mdp")[0];
 		var regex = /^[a-zA-Z0-9]{5,15}$/; // ajout de "doit avoir au moins une lettre et un chiffre"
@@ -129,6 +163,9 @@ var annee_max_naissance = date.getFullYear()-ageMin; // minimum 5 ans
 				fonctions_controle[e.target.name]();
 			});
 		}
+		document.getElementsByName('login')[0].addEventListener("keyup",function(e){
+				fonctions_controle['loginDejaPris']();
+		});
 
 		formulaire.addEventListener("submit",function(e){ // si on valide le formulaire
 			e.preventDefault(); // pour désactiver l'envoi (par défaut) du formulaire

@@ -10,6 +10,7 @@
 								<input class="form-control" type="text" name="login" placeholder="Votre login">
 							</div>
 							<span class="col-sm-offset-4 col-sm-7 info-bulle">Entre 3 et 15 caractères, comporte uniquement lettres (minuscules ou majuscules mais sans accents), chiffres, ou "_"</span>
+							<span id="loginDejaPris" class="col-sm-offset-4 col-sm-7 info-bulle">Ce login est déjà pris</span>
 						</div>
 						<div class="form-group">
 							<label class="col-sm-offset-1 col-sm-3" for="mdp">Mot de passe :</label>
@@ -73,5 +74,7 @@
 				</form>
 			</div> <!--- fin formulaire --->
 			
+			<!--- javascript jquery --->
+			<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 			<!--- javascript personnalisé --->
 			<script src="vue/js/script_inscription.js"></script>

@@ -51,8 +51,7 @@
 			if (!verif_syntax_inscription($pseudo, $mdp, $confirmation_mdp, $nom, $prenom, $mail, $date_naissance, $sexe)){
 				require("vue/layout/layout.tpl");
 			}
-			else { // on regarde s'il existe dans la base
-				require("./modele/utilisateur.php");
+			else {
 				$res = setUtilisateur($nom,$prenom,$mail,$sexe,$pseudo,$date_naissance,$mdp);
 				
 				$_SESSION['profil'] = $res;
@@ -89,6 +88,14 @@
 
 	function verif_syntax_inscription($pseudo, $mdp, $confirmation_mdp, $nom, $prenom, $mail, $date_naissance, $sexe){
 		
+		$utilisateurs = array();
+		$utilisateurs = getUtilisateurs();
+		foreach ($utilisateurs as $utilisateur){
+			if (strcmp($pseudo, $utilisateur['Pseudo']) == 0){
+				return false;
+			}
+		}
+		
 		if (!verif_syntax_connexion($pseudo, $mdp)){
 			return false;
 		}
@@ -124,5 +131,11 @@
 			return checkdate($date_naissance[1], $date_naissance[2], $date_naissance[0]);
 		}
 		return false;
+	}
+	
+	function getUtilisateurs(){
+		require("./modele/utilisateur.php");
+		print json_encode(getUsers());
+		return getUsers();
 	}
 ?>

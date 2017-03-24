@@ -1,4 +1,17 @@
 <?php
+
+	function getUsers(){
+		require("connect.php");
+		$r=array();
+		$reponse = $bdd->query('SELECT * FROM utilisateur');
+		while ($donnees = $reponse->fetch())
+		{
+			$r[]=$donnees;
+		}
+		$reponse->closeCursor();
+		return $r;
+
+	}
 /*
 	function verif_user($login, $mdp){
 		require ("connect.php");
@@ -26,12 +39,9 @@
 
 		$donneesE = $reponseE->fetch();
 		if($donneesE == 0 ){
-
 			return 0;
-
 		}
 		else{
-
 			return $donneesE['IdUtilisateur'] ;
 		}
 	}
