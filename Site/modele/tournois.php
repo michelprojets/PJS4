@@ -32,7 +32,7 @@
 		require("connect.php");
 		$r=array();
 		$reponse = $bdd->prepare("SELECT * FROM Tournois WHERE IdLan=:id");
-		$reponse->execute(array('id' => $idLan));
+		$reponse->execute(array('id' => $IdLan));
 		while ($donnees = $reponse->fetch())
 		{
 			$r[]=$donnees;

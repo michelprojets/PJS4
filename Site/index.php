@@ -10,7 +10,7 @@ if (isset($_GET['controle']) & isset($_GET['action'])) {
 else { //absence de paramètres : prévoir des valeurs par défaut
 	$controle = "start";
 	$action= "accueil";
-	$param="";
+	$param= "";
 }
 	
 //inclure le fichier php de contrôle 
@@ -18,5 +18,4 @@ else { //absence de paramètres : prévoir des valeurs par défaut
 
 	require ('./controle/' . $controle . '.php');   
 	$action ($param);
-	
 ?>

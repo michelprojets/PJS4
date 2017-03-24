@@ -201,7 +201,7 @@ function creationCase(idLan){
 				divLan.classList.remove('mouse-over');
 			});
 			divLan.addEventListener('click', function(){
-				document.location.href="index.php?controle=reservation&action=reserver(" + idLan + ")";
+				document.location.href="index.php?controle=lan&action=afficherLan&param="+idLan;
 			});
 
 			document.getElementById('lans_recherche').appendChild(divLan);
