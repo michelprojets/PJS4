@@ -29,13 +29,18 @@
 							</div>
 							<ul class="nav navbar-nav">
 								<li><a href="index.php?controle=start&action=accueil"><span class="glyphicon glyphicon-home"></span>Accueil</a></li>
-								<li><a href="index.php?controle=organisation&action=organiser"><span class="glyphicon glyphicon-calendar"></span>Organiser une LAN</a></li>
-								<li><a href="index.php?controle=reservation&action=reserver"><span class="glyphicon glyphicon-calendar"></span>Réserver une LAN</a></li>
+								<li><a href="index.php?controle=gestion&action=organiser"><span class="glyphicon glyphicon-calendar"></span>Organiser une LAN</a></li>
+								<li><a href="index.php?controle=gestion&action=reserver"><span class="glyphicon glyphicon-calendar"></span>Réserver une LAN</a></li>
 								<li><a href="index.php?controle=contacts&action=contacter"><span class="glyphicon glyphicon-envelope"></span>Contacts</a></li>
 							</ul>
 							<ul class="nav navbar-nav navbar-right">
-								<li><a href="index.php?controle=compte&action=inscription"><span class="glyphicon glyphicon-user"></span>S'inscrire</a></li>
-								<li><a href="index.php?controle=compte&action=connexion"><span class="glyphicon glyphicon-log-in"></span>Se connecter</a></li>
+								<?php if (!isset($_SESSION['profil']['IdUtilisateur'])){ ?>
+									<li><a href="index.php?controle=compte&action=inscription"><span class="glyphicon glyphicon-user"></span>S'inscrire</a></li>
+									<li><a href="index.php?controle=compte&action=connexion"><span class="glyphicon glyphicon-log-in"></span>Se connecter</a></li>
+								<?php } else { ?>
+									<li><a><span class="glyphicon glyphicon-user"><?php echo(" Bonjour " . $_SESSION['profil']['Pseudo'] . " !");?></span></a></li>
+									<li><a href="index.php?controle=compte&action=deconnexion"><span class="glyphicon glyphicon-log-out"></span>Se déconnecter</a></li>
+								<?php } ?>
 							</ul>
 						</div>
 					</div> <!--- fin container --->

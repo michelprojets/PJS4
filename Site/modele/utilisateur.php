@@ -17,12 +17,12 @@
 	*/
 
 	// test qui marche (base de mysql)
-	function verif_user($loogg,$pass){ // verifie qu'un utilisateur exise renvoie 0 si non, 1 si oui
+	function verif_user($pseudo,$mdp){ // verifie qu'un utilisateur exise renvoie 0 si non, 1 si oui
 
 		require("connect.php");
 
-		$reponseE = $bdd->prepare("SELECT * FROM utilisateur WHERE login = :loogg and pass = :pass");
-		$reponseE->execute(array('loogg' => $loogg , 'pass' => $pass));
+		$reponseE = $bdd->prepare("SELECT * FROM utilisateur WHERE Pseudo = :pseudo and Password = :mdp");
+		$reponseE->execute(array('pseudo' => $pseudo , 'mdp' => $mdp));
 
 		$donneesE = $reponseE->fetch();
 		if($donneesE == 0 ){
@@ -32,7 +32,7 @@
 		}
 		else{
 
-			return $donneesE['id_uti'] ;
+			return $donneesE['IdUtilisateur'] ;
 		}
 	}
 
@@ -52,9 +52,8 @@
 	}
 	function setUtilisateur($nom,$prenom,$mail,$sexe,$pseudo,$date_naissance,$mdp){
 		require("connect.php");
-		$idu = getNbrUtilisateur()+1 ;
-		$reponse = $bdd->prepare("INSERT INTO Utilisateur (IdUtilisateur, NomU, PrenomU, MailU, Sexe, Pseudo, Age, password) VALUES (:IdUtilisateur, :NomU, :PrenomU, :MailU, :Sexe, :Pseudo, :Age, :password)");
-		$reponse->execute(array('IdUtilisateur' => $idu ,'NomU' => $nom,'PrenomU' => $prenom ,'MailU' => $mail ,'Sexe'=>$sexe  ,'Pseudo'=>$pseudo,'DateNaissance'=>$date_naissance,'password'=>$mdp));
+		$reponse = $bdd->prepare("INSERT INTO Utilisateur (NomU, PrenomU, MailU, Sexe, Pseudo, DateNaissance, password) VALUES (:NomU, :PrenomU, :MailU, :Sexe, :Pseudo, :DateNaissance, :Password)");
+		$reponse->execute(array('NomU' => $nom,'PrenomU' => $prenom ,'MailU' => $mail ,'Sexe'=>$sexe  ,'Pseudo'=>$pseudo,'DateNaissance'=>$date_naissance,'Password'=>$mdp));
 
 	}
 ?>
