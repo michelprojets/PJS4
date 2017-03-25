@@ -126,7 +126,6 @@
 			return checkdate($date_naissance[1], $date_naissance[0], $date_naissance[2]);
 		}
 		if (strpos($date, "-")){
-			echo($date);
 			$date_naissance = preg_split("#-#", $date);
 			return checkdate($date_naissance[1], $date_naissance[2], $date_naissance[0]);
 		}

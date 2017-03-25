@@ -109,7 +109,7 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 // ----------------------------------------------------------------------------------------------------------- Trajet -----------------------------------------------------------------------
 
 function calculateAndDisplayRoute(directionsService, directionsDisplay,adrDeLaLanConcernee) {
-    if (document.getElementById('modeDeTransport').value == "BYCICLING") {
+    if (document.getElementById('modeDeTransport').value == "BICYCLING") {
         var modeDeTransport = google.maps.TravelMode.BICYCLING;
     } else if (document.getElementById('modeDeTransport').value == "WALKING") {
         var modeDeTransport = google.maps.TravelMode.WALKING;
@@ -135,6 +135,16 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay,adrDeLaLa
 }
 
 function getDistanceEntreDeuxPoints(origin,destination,modeDeTransport){
+	var moyenDeTransport;
+	if (modeDeTransport == "BICYCLING") {
+        moyenDeTransport = "vélo";
+    } else if (modeDeTransport == "WALKING") {
+        moyenDeTransport = "marchant";
+    } else if (modeDeTransport == "TRANSIT") {
+        moyenDeTransport = "transit";
+    } else {
+		moyenDeTransport = "voiture";
+	}
 	var dist;
 	var ArrayO = [origin];
 	console.log(ArrayO[0]);
@@ -153,8 +163,22 @@ function getDistanceEntreDeuxPoints(origin,destination,modeDeTransport){
     } else {
 		console.log(response);
 		console.log(response.rows[0].elements[0].duration.text);
-	document.getElementById('distance').innerHTML = "La distance est de " + response.rows[0].elements[0].distance.text + ". ";
-	document.getElementById('distance').innerHTML += "Le temps de trajet est d'environ " +  response.rows[0].elements[0].duration.text + ".";
+/*	document.getElementById('distance').innerHTML = "La distance est de " + response.rows[0].elements[0].distance.text + ". ";
+	document.getElementById('distance').innerHTML += "Le temps de trajet est d'environ " +  response.rows[0].elements[0].duration.text + ".";*/
+		var divDistance = document.getElementById('distance');
+		if (divDistance.hasChildNodes()){
+			while (sousDiv = divDistance.firstElementChild.nextElementSibling){
+				divDistance.removeChild(sousDiv);
+			}
+			divDistance.removeChild(divDistance.firstElementChild);
+		}
+		var distance = document.createElement('p');
+		distance.appendChild(document.createTextNode("La distance entre votre position actuelle et la LAN est d'environ : " + response.rows[0].elements[0].distance.text));
+		var tempsTrajet = document.createElement('p');
+		tempsTrajet.appendChild(document.createTextNode("Le temps de trajet en " + moyenDeTransport + " est d'environ : " + response.rows[0].elements[0].duration.text));
+		divDistance.appendChild(distance);
+		divDistance.appendChild(tempsTrajet);
+		
 	}
 	  }
 );
@@ -177,12 +201,16 @@ function loshotelosAvecAmadeus(e){
 	url: "http://api.sandbox.amadeus.com/v1.2/hotels/search-circle?latitude="+e.lat()+"&longitude="+e.lng()+"&radius=3&check_in="+datedebut+"&check_out="+datefin+"&currency=EUR&chain=RT&cy=EUR&number_of_results=50&apikey=NuUZ93jhWCOQ0ZPBXYhj7Dy9i27w9sXh",
 	success: function(data) {
 		//console.log(data.results[0]);
-		description.innerHTML = "<h3 align='center'> Les hotels les plus proches : </h3>";
+	//	description.innerHTML = "<h3 align='center'> Les hotels les plus proches : </h3>";
+		var titrePartie = document.createElement('h3');
+		titrePartie.appendChild(document.createTextNode("Les 10 hôtels les plus proche de la LAN : "));
+		description.appendChild(titrePartie);
 		
 		for (var i = 0; i < data.results.length; i++) {
 			createMarkerAmadeus(data.results[i]);
 			if(i<=10){
-				description.innerHTML += htmlDesc(data.results[i]);
+			//	description.innerHTML += htmlDesc(data.results[i]);
+				htmlDesc(data.results[i]);
 			}
 		}
 		
@@ -203,10 +231,10 @@ function createMarkerAmadeus(place) {
   google.maps.event.addListener(marker, 'mouseover', function() {
 	
 	// détail hotel avec mouseover
-	var detail = place.property_name;
-	detail+="</br> prix pour le séjour : " + place.total_price.amount + " " + place.total_price.currency;
-	detail+="</br> adresse : " + place.address['line1'] + ', ' + place.address['city'];
-	detail+="numéro : " + place.contacts[0].detail;
+	var detail = "Nom : " + place.property_name;
+	detail+="</br> Prix du séjour : " + place.total_price.amount + " " + place.total_price.currency;
+	detail+="</br> Adresse de l'hôtel : " + place.address['line1'] + ', ' + place.address['city'];
+	detail+="</br> Téléphone : " + place.contacts[0].detail;
 	detail+="</br>";
 	
     infowindow.setContent(detail);
@@ -222,18 +250,53 @@ function createMarkerAmadeus(place) {
 // pour la description des 10 premiers hotels
 function htmlDesc(place)
 {
-		
-		var q;
-		q="<div>";
-		q +="<ul style='list-style-type:none'>";
-		q += "<li align='center'><p>"+place.property_name +"</p></li>";
-		q += "<li> <p>prix du sejour : " + + place.total_price.amount + " " + place.total_price.currency + "</p></li>";
-		q += "<li> <p>adresse : " + place.address['line1'] + ', ' + place.address['city'] +"</p></li>";
-		q += "<li><p> numero : " +  place.contacts[0].detail +"</p></li>";
-		q += "<li><p> ------------- </p></li>";
-		q+="</ul></div>";
-		
-		return q;
+	var description = document.getElementById('infoMap');
+	/*
+	var q;
+	q="<div>";
+	q +="<ul style='list-style-type:none'>";
+	q += "<li align='center'><p>"+place.property_name +"</p></li>";
+	q += "<li> <p>prix du sejour : " + place.total_price.amount + " " + place.total_price.currency + "</p></li>";
+	q += "<li> <p>adresse : " + place.address['line1'] + ', ' + place.address['city'] +"</p></li>";
+	q += "<li><p> numero : " +  place.contacts[0].detail +"</p></li>";
+	q += "<li><p> ------------- </p></li>";
+	q+="</ul></div>";
+	
+	return q;
+	*/
+	
+	var divHotel = document.createElement('div');
+	divHotel.classList.add('hotel');
+	divHotel.classList.add('row');
+	
+	var titre = document.createElement('p');
+	titre.classList.add("col-sm-offset-1");
+	titre.classList.add("col-sm-10");
+	titre.classList.add("titre");
+	titre.appendChild(document.createTextNode("Nom : " + place.property_name));
+
+	var prix = document.createElement('p');
+	prix.classList.add("col-sm-offset-1");
+	prix.classList.add("col-sm-10");
+	prix.appendChild(document.createTextNode("Prix du séjour : " + place.total_price.amount + " " + place.total_price.currency));
+	
+	var adresse = document.createElement('p');
+	adresse.classList.add("col-sm-offset-1");
+	adresse.classList.add("col-sm-10");
+	adresse.appendChild(document.createTextNode("Adresse de l'hôtel : " + place.address['line1'] + ", " + place.address['city']));
+	
+	var telephone = document.createElement('p');
+	telephone.classList.add("col-sm-offset-1");
+	telephone.classList.add("col-sm-10");
+	telephone.appendChild(document.createTextNode("Téléphone : " + place.contacts[0].detail));
+	
+	divHotel.appendChild(titre);
+	divHotel.appendChild(prix);
+	divHotel.appendChild(adresse);
+	divHotel.appendChild(telephone);
+	
+	description.appendChild(divHotel);
+	
 }
 
 
@@ -327,9 +390,9 @@ function htmlDesc(place)
 		q+="</ul> </div>";
 		
 		return q;
-}*/
+}
 	
-	
+*/
 
 /*
 function geoloc(){

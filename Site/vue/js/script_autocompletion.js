@@ -166,7 +166,8 @@ function creationCase(idLan){
 
 
 			var titre = document.createElement('span');
-			titre.className += "col-sm-offset-1 col-sm-4";
+			titre.classList.add("col-sm-offset-1")
+			titre.classList.add("col-sm-4");
 			titre.appendChild(document.createTextNode("Nom : " + lan.NomL));
 
 			var dateLan = document.createElement('span');

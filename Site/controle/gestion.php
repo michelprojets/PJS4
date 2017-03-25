@@ -12,21 +12,29 @@
 		$adresseSite = isset($_POST['adresseSite'])?($_POST['adresseSite']):'';
 		$description = isset($_POST['description'])?($_POST['description']):'';
 
-		if (count($_POST)==0){
-			require("./vue/layout/layout.tpl") ;
+		if (!isset($_SESSION['profil']['Pseudo'])){
+			$controle = "compte";
+			$action = "connexion";
+			$nexturl = "index.php?controle=" . $controle . "&action=" . $action;
+			header ("Location:" . $nexturl);
 		}
-		else{ // vérification d'abord s'il y a erreur de syntaxe
-			if (!verif_syntax_organisation($nomLan,$dateDebut,$dateFin,$adresseLan,$villeLan,$nbTournois,$nbVisiteurs,$prixVisite,$adresseSite,$description)){
-				require("vue/layout/layout.tpl");
+		else {
+			if (count($_POST)==0){
+				require("./vue/layout/layout.tpl") ;
 			}
-			else { // on regarde s'il existe dans la base
-				require("./modele/lan.php");
-				$idUser = setLan($nomLan,$dateDebut,$dateFin,$adresseLan,$nbTournois,$nbVisiteurs,$prixVisite,$adresseSite,$description);
+			else{ // vérification d'abord s'il y a erreur de syntaxe
+				if (!verif_syntax_organisation($nomLan,$dateDebut,$dateFin,$adresseLan,$villeLan,$nbTournois,$nbVisiteurs,$prixVisite,$adresseSite,$description)){
+					require("vue/layout/layout.tpl");
+				}
+				else { // on regarde s'il existe dans la base
+					require("./modele/lan.php");
+					$idUser = setLan($nomLan,$dateDebut,$dateFin,$adresseLan,$nbTournois,$nbVisiteurs,$prixVisite,$adresseSite,$description);
 
-				$controle = "start";
-				$action = "accueil";
-				$nexturl = "index.php?controle=" . $controle . "&action=" . $action;
-				header ("Location:" . $nexturl);
+					$controle = "start";
+					$action = "accueil";
+					$nexturl = "index.php?controle=" . $controle . "&action=" . $action;
+					header ("Location:" . $nexturl);
+				}
 			}
 		}
 	}

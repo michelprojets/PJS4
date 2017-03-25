@@ -4,12 +4,21 @@
     require("modele/lan.php");
     $lanPage= array();
     $lanPage=getLan($idlan);
+	$convertedDateDebut = convertDate($lanPage['DateDebut']);
+	$convertedDateFin = convertDate($lanPage['DateFin']);
+	
     if(!empty($lanPage)){
       require("vue/layout/layout.tpl");
     }
     else{
       header('Location: index.php?controle=erreur&action=pasdeLan');
     }
+  }
+  
+  function convertDate($date){ // pour format mysql
+	$tabDate = preg_split("#-#", $date);
+	$convertedDate = $tabDate[2] . "/" . $tabDate[1] . "/" . $tabDate[0];
+	return $convertedDate;
   }
 
   function afficherTournois($idl){

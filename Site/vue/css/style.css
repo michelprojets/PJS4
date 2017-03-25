@@ -251,12 +251,20 @@ footer p {
 	}
 }
 
+/*********************************************** Page connexion *****************************************/
+
+#formulaire legend a{
+	display: block;
+	margin-left: 5%;
+}
+
 /*********************************************** Page d'une lan *****************************************/
 
 #Unelan{
 	background-color: white;
 	margin-top: 10%;
 }
+
 #NomLan{
 	font-family: Impact;
 }
@@ -264,6 +272,10 @@ footer p {
 article{
 	margin-top: 5%;
 	margin-bottom: : 5%;
+}
+
+article h2, h4, p{
+	color: white;
 }
 
 /* --------------------------------------------- Map ---------------------------------------------------- */
@@ -274,6 +286,29 @@ article{
 
 #infoMap{
 	height: 500px;
+}
+
+#infoMap h3{
+	color: white;
+}
+
+#infoMap .hotel {
+	margin-top: 10%;
+	border-width:1px;
+	border-color:white;
+	border-style:solid;
+}
+
+#infoMap .hotel p {
+	color: white;
+}
+
+#infoMap .hotel .titre{
+	text-decoration: underline;
+}
+
+#distance {
+	margin-top: 2%;
 }
 
 /*********************************************** Page erreur *****************************************/

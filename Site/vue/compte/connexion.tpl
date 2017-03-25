@@ -1,7 +1,7 @@
 		<div id="formulaire" class="row"> <!--- formulaire --->
 			<form class="well col-sm-offset-1 col-sm-10" action="index.php?controle=compte&action=connexion" method="post">
 				<legend>
-					<p class="col-sm-offset-1">Se connecter</p>
+					<p class="col-sm-offset-1">Se connecter<a href="index.php?controle=compte&action=inscription">(pas encore inscrit ?)</a></p>
 				</legend>
 				<fieldset>
 					<div class="form-group">
