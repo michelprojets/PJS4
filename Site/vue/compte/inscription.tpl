@@ -58,9 +58,11 @@
 							<label class="col-sm-offset-1 col-sm-3" for="sexe">Sexe :</label>
 							<div class="controle col-sm-7">
 								<select class="form-control" id="sexe">
-									<option>Sélectionner votre sexe</option>
-									<option>Homme</option>
-									<option>Femme</option>
+									<optgroup label = "Votre sexe :">
+										<option selected=selected disabled=disabled>Sélectionner votre sexe</option>
+										<option>Homme</option>
+										<option>Femme</option>
+									</optgroup>
 								</select>
 							</div>
 							<span class="col-sm-offset-4 col-sm-7 info-bulle">Vous devez sélectionner votre sexe</span>
