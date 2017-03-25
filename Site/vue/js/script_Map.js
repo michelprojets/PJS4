@@ -180,7 +180,7 @@ function getDistanceEntreDeuxPoints(origin,destination,modeDeTransport){
 		divDistance.appendChild(tempsTrajet);
 		
 	}
-	  }
+	}
 );
 }
 // ------------------------------------------------------------------------------------------------------ Fin trajet -----------------------------------------------------------------------------
@@ -189,12 +189,18 @@ function getDistanceEntreDeuxPoints(origin,destination,modeDeTransport){
 // les hotels (api amadeus) 
 // radius en km
 
+function convertDate(date){
+	var tabChamp = date.split("/");
+	date_normalisee = tabChamp[2] + "-" + tabChamp[1] + "-" + tabChamp[0];
+	return date_normalisee;
+}
+
 function loshotelosAvecAmadeus(e){
 	var description = document.getElementById('infoMap');
 	var v = document.getElementById('datedebut');
-	var datedebut = v.innerText;
+	var datedebut = convertDate(v.innerText);
 	v = document.getElementById('datefin');
-	var datefin = v.innerText;
+	var datefin = convertDate(v.innerText);
 	//console.log("YEAAAAAAAAAAA" + datedebut +" "+ datefin);
 	$.ajax({
 	dataType: "json",
