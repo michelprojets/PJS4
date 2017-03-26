@@ -1,7 +1,7 @@
 ﻿			<div id="formulaire" class="row"> <!--- formulaire --->
-				<form class="well col-sm-offset-1 col-sm-10" action="index.php?controle=compte&action=organiser" method="post">
+				<form class="well col-sm-offset-1 col-sm-10" action="index.php?controle=gestion&action=organiser" method="post">
 					<legend>
-						<p class="col-sm-offset-1">Organiser</p>
+						<p class="col-sm-offset-1">Organiser la LAN</p>
 					</legend>
 					<fieldset>
 						<div class="form-group">

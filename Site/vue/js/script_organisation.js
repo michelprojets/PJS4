@@ -114,7 +114,7 @@
 		if (fonctions_controle['dateDebut']() && fonctions_controle['dateFin']()){ // si on a renseigné correctement les deux dates
 			var dateDebut = new Date(champDebut.value);
 			var dateFin = new Date(champFin.value);
-			if (dateDebut.getTime() < dateFin.getTime()){
+			if (dateDebut.getTime() <= dateFin.getTime()){
 				document.getElementById("respectDebutFin").style.display = "none";
 				champFin.classList.remove("problem");
 				champFin.classList.add("correct");

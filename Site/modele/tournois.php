@@ -50,9 +50,8 @@
 	}
 	function setTournois($PrixTournois, $NbEquipe, $IdLan, $IdJeu){
 		require("connect.php");
-		$idT = getNbrTournois()+1 ;
-		$reponse = $bdd->prepare("INSERT INTO Tournois (IdTournois, PrixTournois, NbEquipe, IdLan, IdJeu) VALUES (:IdTournois, :PrixTournois, :NbEquipe, :IdLan, :IdJeu)");
-		$reponse->execute(array('IdTournois' => $idT ,'PrixTournois' => $PrixTournois,'NbEquipe' => $NbEquipe ,'IdLan' => $IdLan ,'IdJeu'=>$IdJeu ));
+		$reponse = $bdd->prepare("INSERT INTO Tournois (PrixTournois, NbEquipe, IdLan, IdJeu) VALUES (:PrixTournois, :NbEquipe, :IdLan, :IdJeu)");
+		$reponse->execute(array('PrixTournois' => $PrixTournois,'NbEquipe' => $NbEquipe ,'IdLan' => $IdLan ,'IdJeu'=>$IdJeu ));
 
 	}
 

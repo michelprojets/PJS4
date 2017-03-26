@@ -71,7 +71,8 @@
 			$controle = "start";
 			$action = "accueil";
 			$nexturl = "index.php?controle=" . $controle . "&action=" . $action;
-			header ("Location:" . $nexturl);
+			header ("Location:" . $nexturl); 
+			// redirection à l'accueil pour ne pas qu'il puisse se déconnecter en restant sur la page organisation
 		}
 	}
 

@@ -34,14 +34,19 @@
 		$reponse->execute(array('Id' => $id));
 		return $donnees = $reponse->fetch();
 	}
-
-
-	function setLan($nom,$dated,$datef,$adres,$nbt,$nbv,$prixv,$adressS,$desc){
+	
+	function getIdLan($nom,$dated,$datef,$adres,$nbt,$nbv,$prixv,$adressS,$desc,$adressW){
 		require("connect.php");
-		$idLAN = getNbrlAN()+1 ;
-		$reponse = $bdd->prepare("INSERT INTO LAN (IdLan, NomL, DateDebut, DateFin, AdresseLan, NbTournois, Nbvisiteurs, PrixVisite, AdresseSite, Description)
-		VALUES (:IdLan, :NomL, :DateDebut, :DateFin, :AdresseLan, :NbTournois, :Nbvisiteurs, :PrixVisite, :AdresseSite, :Description)");
-		$reponse->execute(array('IdLan' => $idLAN ,'NomL' => $nom,'DateDebut' => $dated ,'DateFin' => $datef ,'AdresseLan'=>$adres  ,'NbTournois'=>$nbt,'Nbvisiteurs'=>$nbv,'PrixVisite'=>$prixv,'AdresseSite'=>$adressS,' Description'=>$desc));
+		$reponse = $bdd->prepare("SELECT IdLan FROM LAN WHERE NomL = :NomL and DateDebut =:DateDebut and DateFin =:DateFin and AdresseLan =:AdresseLan and NbTournois =:NbTournois and Nbvisiteurs =:Nbvisiteurs and PrixVisite =:PrixVisite and AdresseSite =:AdresseSite and Description =:Description and AdresseWidget =:AdresseWidget");
+		$reponse->execute(array('NomL' => $nom,'DateDebut' => $dated ,'DateFin' => $datef ,'AdresseLan'=>$adres  ,'NbTournois'=>$nbt,'Nbvisiteurs'=>$nbv,'PrixVisite'=>$prixv,'AdresseSite'=>$adressS,'Description'=>$desc, 'AdresseWidget'=>$adressW));
+		return $donnees = $reponse->fetch();
+	}
+
+	function setLan($nom,$dated,$datef,$adres,$nbt,$nbv,$prixv,$adressS,$desc,$adressW){
+		require("connect.php");
+		$reponse = $bdd->prepare("INSERT INTO LAN (NomL, DateDebut, DateFin, AdresseLan, NbTournois, Nbvisiteurs, PrixVisite, AdresseSite, Description, AdresseWidget)
+		VALUES (:NomL, :DateDebut, :DateFin, :AdresseLan, :NbTournois, :Nbvisiteurs, :PrixVisite, :AdresseSite, :Description, :AdresseWidget)");
+		$reponse->execute(array('NomL' => $nom,'DateDebut' => $dated ,'DateFin' => $datef ,'AdresseLan'=>$adres  ,'NbTournois'=>$nbt,'Nbvisiteurs'=>$nbv,'PrixVisite'=>$prixv,'AdresseSite'=>$adressS,'Description'=>$desc, 'AdresseWidget'=>$adressW));
 
 	}
 
