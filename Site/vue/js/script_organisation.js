@@ -1,7 +1,155 @@
 /* script js */
 
 /* PAGE ORGANISATION */
+///////////////////////////// Tournoi ////////////////////////
+var listeJeux =[]
+var listedesTournois =[]
 
+var nomlan
+var adresselan
+var villelan
+var editor1
+var datedebutlan
+var datefinlan
+var nbvisiteur
+var prixvisitelan
+var adressesite
+var adressewidget
+var nbTournois
+
+function tournoi(idjeu,nbslot,prix) {
+    this.idjeu = idjeu;
+    this.nbslot = nbslot;
+    this.prix = prix;
+}
+
+$( function() {
+  getJeux();
+
+
+} );
+
+function getJeux(){
+	$.getJSON("index.php?controle=start&action=getJx", function(data){
+		listeJeux = data;
+    insererJeux();
+	});
+}
+
+function insererJeux(){
+
+  $('#jeuxselec option').remove() ;
+  var select = $('#jeuxselec');
+  if(select.prop) {
+    var options = select.prop('options');
+  }
+  else {
+    var options = select.attr('options');
+  }
+
+  $.each(listeJeux, function(i) {
+    options[options.length] = new Option(listeJeux[i].NomJeu, listeJeux[i].IdJeu);
+  });
+
+}
+
+function ajoutTn(){
+
+  var tn = new tournoi($("#jeuxselec").val(),$("#nbslot").val(),$("#prixtournoi").val());
+  listedesTournois.push(tn);
+  afficherTn()
+}
+
+function afficherTn(){
+  var msg = "";
+  msg = $("#afficherTn").html()+" "+$("#jeuxselec").val()+" "+$("#nbslot").val()+" "+$("#prixtournoi").val()+"</br>" ;
+  $("#afficherTn").html(msg) ;
+
+
+}
+
+function enregistrerLan(){
+	console.log("enrelan");
+	nomlan = $("#nomlan").val();
+	adresselan = $("#adresselan").val();
+	villelan = $("#villelan").val();
+	editor1 = $("#editor1").val();
+	datedebutlan = $("#datedebutlan").val();
+	datefinlan= $("#datefinlan").val();
+	nbvisiteur = $("#nbvisiteur").val();
+	prixvisitelan = $("#prixvisitelan").val();
+	adressesite = $("#adressesite").val();
+	adressewidget =$("#adressewidget").val();
+	nbTournois = listedesTournois.length;
+	console.log( nomlan);
+    console.log(villelan);
+    console.log(datefinlan);
+    console.log(prixvisitelan);
+    console.log(villelan);
+	console.log(nbTournois);
+
+
+	var dataObje={
+		nomlan : nomlan,
+		adresselan : adresselan,
+		villelan : villelan,
+		editor1 : editor1,
+		datedebutlan :   datedebutlan,
+		datefinlan : datefinlan,
+		nbvisiteur :nbvisiteur,
+		prixvisitelan :   prixvisitelan,
+		adressesite : adressesite,
+		adressewidget : adressewidget,
+		nbTournois : nbTournois
+	};
+  console.log("postenrelan");
+$.post("index.php?controle=gestion&action=enregLan", dataObje ,retourlan);
+
+}
+
+  function enregistrertournois(){
+
+    var tetetet = $("#nomlan").val();
+    console.log("azeazzarzrar");
+
+
+    $.each(listedesTournois,function(i){
+			//var json = JSON.stringify( tabEmplacementEnregistre[i] );
+      console.log("listetlan");
+			var dataObject={
+				idjeu : listedesTournois[i].idjeu,
+				nbslot : listedesTournois[i].nbslot,
+				prix : listedesTournois[i].prix,
+        nomlan : nomlan,
+        adresselan : adresselan,
+        villelan : villelan,
+        editor1 : editor1,
+        datedebutlan :   datedebutlan,
+        datefinlan : datefinlan,
+        nbvisiteur :nbvisiteur,
+        prixvisitelan :   prixvisitelan,
+        adressesite : adressesite,
+        adressewidget : adressewidget
+
+			};
+      console.log("postlistetlan");
+		$.post("index.php?controle=gestion&action=tournois", dataObject ,retourfonct);
+	});
+}
+
+function retourlan(){
+
+  enregistrertournois();
+}
+
+function retourfonct(){
+
+	console.log("NICE");
+}
+
+
+
+//////////////////////////////////
 (function(){
 
 	function reset(){ // pour reinitialiser l'état du formulaire
@@ -43,7 +191,7 @@
 	}
 
 	// l'ensemble des fonctions de contrôle
-	
+
 	fonctions_controle['nomLan'] = function(){
 		var champ = document.getElementsByName("nomLan")[0];
 		var regex = /^[\sa-zA-Z0-9éèùîàô]{2,35}$/;
@@ -106,11 +254,11 @@
 		var etatChamp = regexFinal.test(date_normalisee) && (date.getTime() > date_maintenant.getTime());
 		return modification_interactif(champ,etatChamp);
 	};
-	
+
 	fonctions_controle['respectDebutFin'] = function(){
 		var champDebut = document.getElementsByName("dateDebut")[0];
 		var champFin = document.getElementsByName("dateFin")[0];
-		
+
 		if (fonctions_controle['dateDebut']() && fonctions_controle['dateFin']()){ // si on a renseigné correctement les deux dates
 			var dateDebut = new Date(champDebut.value);
 			var dateFin = new Date(champFin.value);
@@ -147,19 +295,19 @@
 		}
 		return modification_interactif(champ,etatChamp);
 	};
-	
+
 	fonctions_controle['prixVisite'] = function(){
 		var champ = document.getElementsByName("prixVisite")[0];
 		var regex = /^[0-9]+[.]{1}[0-9]{2}$/;
 		return modification_interactif(champ,regex.test(champ.value));
 	};
-	
+
 	fonctions_controle['adresseSite'] = function(){
 		var champ = document.getElementsByName('adresseSite')[0];
 		var regex = /^((http|https):\/\/){1}(www[.])?([a-zA-Z0-9]|-)+([.][a-zA-Z0-9(-|\/|=|?)?]+)+$/;
 		return modification_interactif(champ,regex.test(champ.value));
 	};
-	
+
 	fonctions_controle['adresseWidget'] = function(){
 		var champ = document.getElementsByName('adresseWidget')[0];
 		var regex = /^((http|https):\/\/){1}(www[.])?([a-zA-Z0-9]|-)+([.][a-zA-Z0-9(-|\/|=|?)?]+)+$/;
@@ -177,11 +325,11 @@
 				fonctions_controle[e.target.name]();
 			});
 		}
-		
+
 		document.getElementsByName('dateDebut')[0].addEventListener("keyup",function(e){
 				fonctions_controle['respectDebutFin']();
 		});
-		
+
 		document.getElementsByName('dateFin')[0].addEventListener("keyup",function(e){
 				fonctions_controle['respectDebutFin']();
 		});
@@ -195,7 +343,7 @@
 			}
 		//	submitButton.disabled = etatForm?"false":"true"; // le bouton est désactivé si c'est mal rempli
 			if (etatForm) {
-				formulaire.submit();
+				enregistrerLan();
 			}
 		});
 

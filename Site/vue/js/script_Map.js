@@ -257,22 +257,11 @@ function createMarkerAmadeus(place) {
 function htmlDesc(place)
 {
 	var description = document.getElementById('infoMap');
-	/*
-	var q;
-	q="<div>";
-	q +="<ul style='list-style-type:none'>";
-	q += "<li align='center'><p>"+place.property_name +"</p></li>";
-	q += "<li> <p>prix du sejour : " + place.total_price.amount + " " + place.total_price.currency + "</p></li>";
-	q += "<li> <p>adresse : " + place.address['line1'] + ', ' + place.address['city'] +"</p></li>";
-	q += "<li><p> numero : " +  place.contacts[0].detail +"</p></li>";
-	q += "<li><p> ------------- </p></li>";
-	q+="</ul></div>";
-	
-	return q;
-	*/
 	
 	var divHotel = document.createElement('div');
+	divHotel.classList.add('caseTrajet');
 	divHotel.classList.add('hotel');
+	divHotel.classList.add('well');
 	divHotel.classList.add('row');
 	
 	var titre = document.createElement('p');

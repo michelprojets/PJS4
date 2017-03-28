@@ -311,6 +311,24 @@ article h2, h4, p{
 	margin-top: 2%;
 }
 
+/*********************************************** Page réservation ************************************/
+
+/* --------------------------------------------- Map 2 --------------------------------------------- */
+
+#idMapTtesLesLans{
+	height: 700px;
+	
+}
+
+#infoMapTtesLesLans{
+	height: 700px;
+	color : white;
+}
+
+#infoMapTtesLesLans a{
+	color: white;
+}
+
 /*********************************************** Page erreur *****************************************/
 
 #erreur{
@@ -332,4 +350,15 @@ article h2, h4, p{
 
 #formulaire .glyphicon-euro {
 	color:black;
+}
+
+/************************************************ Trajet *************************************************************/
+
+.caseTrajet{
+	text-align: center;
+}
+
+#trajet{
+	margin-top: 2%;
+	margin-bottom: 4%;
 }

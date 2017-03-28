@@ -187,7 +187,8 @@ function creationCase(idLan){
 			debutDescription.id = "description";
 			debutDescription.classList.add('col-sm-offset-1');
 			debutDescription.classList.add('col-sm-10');
-			italique.appendChild(document.createTextNode("Description : " + ((lan.Description.length>200)?(lan.Description.substring(0,200)+"..."):lan.Description)));
+		//	italique.appendChild(document.createTextNode("Description : " + ((lan.Description.length>200)?(lan.Description.substring(0,200)+"..."):lan.Description)));
+			italique.innerHTML = (lan.Description.length>200)?(lan.Description.substring(0,200)+"..."):lan.Description;
 			debutDescription.appendChild(italique);
 			
 			divLan.appendChild(titre);

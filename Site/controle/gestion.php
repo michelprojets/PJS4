@@ -12,7 +12,7 @@
 		$adresseSite = isset($_POST['adresseSite'])?($_POST['adresseSite']):'';
 		$description = isset($_POST['description'])?($_POST['description']):'';
 		$adresseWidget = isset($_POST['adresseWidget'])?($_POST['adresseWidget']):'';
-		
+
 		if (!isset($_SESSION['profil']['Pseudo'])){
 			$controle = "compte";
 			$action = "connexion";
@@ -23,81 +23,43 @@
 			if (count($_POST)==0){
 				require("./vue/layout/layout.tpl") ;
 			}
-			else{ // vérification d'abord s'il y a erreur de syntaxe
+			else{ // v?rification d'abord s'il y a erreur de syntaxe
 				if (!verif_syntax_organisation($nomLan,$dateDebut,$dateFin,$adresseLan,$villeLan,$nbTournois,$nbVisiteurs,$prixVisite,$adresseSite,$description,$adresseWidget)){
 					require("vue/layout/layout.tpl");
 				}
 				else {
-					/*
-					$controle = "gestion";
-					$action = "tournois";
-					*/
-					$param = array($nomLan,$dateDebut,$dateFin,$adresseLan,$villeLan,$nbTournois,$nbVisiteurs,$prixVisite,$adresseSite,$description,$adresseWidget);
-					/*
-					$nexturl = "index.php?controle=" . $controle . "&action=" . $action . "&param=" . $param;
-					header ("Location:" . $nexturl); // on passe au contrôle tournois
-					*/
-					tournois($param);
-				}
-			}
-		}
-	}
-	
-	function tournois($infosLan){ // on va créer nbTournois fois les formulaires
-		// A AFFICHER DANS LE TPL :
-		// PrixTournois
-		// NbEquipe
-		// IdJeu (liste déroulante avec accès base pour avoir la liste des jeux)
-		
-		$prixTournois = isset($_POST['prixTournois'])?($_POST['prixTournois']):'';
-		$nbEquipe = isset($_POST['nbEquipe'])?($_POST['nbEquipe']):'';
-		$jeuSelectionne = isset($_POST['jeuSelectionne'])?($_POST['jeuSelectionne']):'';
-		
-		require("./modele/jeu.php");
-					
-		$nbTournois = intval($infosLan[5]);
-		$listeJeux = getJeux();
-		
-		if (!isset($_SESSION['profil']['Pseudo'])){
-			$controle = "compte";
-			$action = "connexion";
-			$nexturl = "index.php?controle=" . $controle . "&action=" . $action;
-			header ("Location:" . $nexturl);
-		}
-		else {
-			if (count($_POST)==0){
-				require("./vue/layout/layout.tpl") ;
-			}
-			else{ // vérification d'abord s'il y a erreur de syntaxe
-				if (!verif_syntax_organisation($nomLan,$dateDebut,$dateFin,$adresseLan,$villeLan,$nbTournois,$nbVisiteurs,$prixVisite,$adresseSite,$description)){
-					require("vue/layout/layout.tpl");
-				}
-				else {
-					require("./modele/lan.php");
-					require("./modele/tournois.php");
-					
-					setLan($infosLan[0],$infosLan[1],$infosLan[2],$infosLan[3],$infosLan[4],$infosLan[5],$infosLan[6],$infosLan[7],$infosLan[8],$infosLan[9]);
-					$idLan = getIdLan($infosLan[0],$infosLan[1],$infosLan[2],$infosLan[3],$infosLan[4],$infosLan[5],$infosLan[6],$infosLan[7],$infosLan[8],$infosLan[9]);
-					$idJeu = getIdJeu($jeuSelectionne);
-					setTournois($prixTournois, $nbEquipe, $IdLan, $IdJeu);	
-					
 					$controle = "start";
 					$action = "accueil";
 					$nexturl = "index.php?controle=" . $controle . "&action=" . $action;
-					header ("Location:" . $nexturl); // on passe au contrôle tournois
+					header ("Location:" . $nexturl);
 				}
 			}
 		}
 	}
-	
+
+	function enregLan(){
+		require("modele/lan.php");
+		require("modele/tournois.php");
+		
+		setLan($_POST["nomlan"],$_POST["datedebutlan"],$_POST["datefinlan"],$_POST["adresselan"],$_POST["villelan"],$_POST["editor1"],$_POST["nbvisiteur"],$_POST["prixvisitelan"],$_POST["adressesite"],$_POST["adressewidget"],$_POST["nbTournois"],$_SESSION['profil']['IdUtilisateur']);
+	}
+
+	function tournois(){
+		require("modele/lan.php");
+		require("modele/tournois.php");
+		
+		$idLan = getIdLan($_POST["nomlan"],$_POST["datedebutlan"],$_POST["datefinlan"],$_POST["villelan"]);
+		setTournois($_POST["prix"], $_POST["nbslot"],$idLan["IdLan"], $_POST["idjeu"]);
+	}
+
 	function verif_syntax_organisation($nomLan,$dateDebut,$dateFin,$adresseLan,$villeLan,$nbTournois,$nbVisiteurs,$prixVisite,$adresseSite,$description,$adresseWidget){
-		if (!preg_match("#^[\sa-zA-Z0-9éèùîàô]{2,35}$#", $nomLan)) {
+		if (!preg_match("#^[\sa-zA-Z0-9??????]{2,35}$#", $nomLan)) {
 			return false;
 		}
-		if (!preg_match("#^[\sa-zA-Z0-9éèùîàô]{8,35}$#", $adresseLan)) {
+		if (!preg_match("#^[\sa-zA-Z0-9??????]{8,35}$#", $adresseLan)) {
 			return false;
 		}
-		if (!preg_match("#^[A-Z]{1}[a-zéèùîàô]{1,20}$#", $villeLan)) {
+		if (!preg_match("#^[A-Z]{1}[a-z??????]{1,20}$#", $villeLan)) {
 			return false;
 		}
 		if (strlen($description) < 10 || strlen($description) > 1000) {
@@ -141,5 +103,9 @@
 			return checkdate($date_naissance[1], $date_naissance[2], $date_naissance[0]);
 		}
 		return false;
+	}
+	
+	function reserver(){
+		require("vue/layout/layout.tpl");
 	}
 ?>

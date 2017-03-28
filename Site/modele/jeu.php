@@ -1,6 +1,5 @@
 <?php
 
-
 	function getIdJeu($jeu){
 		require("connect.php");
 		$reponse = $bdd->prepare("SELECT IdJeu FROM Jeu WHERE NomJeu = :nom");
@@ -40,8 +39,5 @@
 		$reponse->execute(array('IdJeu' => $idJ ,'NomJeu' => $NomJeu,'NbJoueurEquipe' => $NbJoueurEquipe));
 
 	}
-
-
-
 
 ?>

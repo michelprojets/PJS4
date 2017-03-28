@@ -1,6 +1,5 @@
 <?php
 
-
 	function getLans(){
 		require("connect.php");
 		$r=array();
@@ -34,19 +33,19 @@
 		$reponse->execute(array('Id' => $id));
 		return $donnees = $reponse->fetch();
 	}
-	
-	function getIdLan($nom,$dated,$datef,$adres,$nbt,$nbv,$prixv,$adressS,$desc,$adressW){
+
+	function getIdLan($nom,$dated,$datef,$ville){
 		require("connect.php");
-		$reponse = $bdd->prepare("SELECT IdLan FROM LAN WHERE NomL = :NomL and DateDebut =:DateDebut and DateFin =:DateFin and AdresseLan =:AdresseLan and NbTournois =:NbTournois and Nbvisiteurs =:Nbvisiteurs and PrixVisite =:PrixVisite and AdresseSite =:AdresseSite and Description =:Description and AdresseWidget =:AdresseWidget");
-		$reponse->execute(array('NomL' => $nom,'DateDebut' => $dated ,'DateFin' => $datef ,'AdresseLan'=>$adres  ,'NbTournois'=>$nbt,'Nbvisiteurs'=>$nbv,'PrixVisite'=>$prixv,'AdresseSite'=>$adressS,'Description'=>$desc, 'AdresseWidget'=>$adressW));
+		$reponse = $bdd->prepare("SELECT IdLan FROM LAN WHERE NomL = :NomL and DateDebut =:DateDebut and DateFin =:DateFin and VilleLAN =:Ville ");
+		$reponse->execute(array('NomL' => $nom,'DateDebut' => $dated ,'DateFin' => $datef ,'Ville'=>$ville));
 		return $donnees = $reponse->fetch();
 	}
 
-	function setLan($nom,$dated,$datef,$adres,$nbt,$nbv,$prixv,$adressS,$desc,$adressW){
+	function setLan($nom,$dated,$datef,$adres,$ville,$desc,$nbv,$prixv,$adressS,$adressW,$nbTournois,$idOrganisateur){
 		require("connect.php");
-		$reponse = $bdd->prepare("INSERT INTO LAN (NomL, DateDebut, DateFin, AdresseLan, NbTournois, Nbvisiteurs, PrixVisite, AdresseSite, Description, AdresseWidget)
-		VALUES (:NomL, :DateDebut, :DateFin, :AdresseLan, :NbTournois, :Nbvisiteurs, :PrixVisite, :AdresseSite, :Description, :AdresseWidget)");
-		$reponse->execute(array('NomL' => $nom,'DateDebut' => $dated ,'DateFin' => $datef ,'AdresseLan'=>$adres  ,'NbTournois'=>$nbt,'Nbvisiteurs'=>$nbv,'PrixVisite'=>$prixv,'AdresseSite'=>$adressS,'Description'=>$desc, 'AdresseWidget'=>$adressW));
+		$reponse = $bdd->prepare("INSERT INTO LAN (NomL, DateDebut, DateFin, AdresseLan,VilleLAN,NbTournois,Nbvisiteurs, PrixVisite, AdresseSite, Description, AdresseWidget,IdOrganisateur)
+		VALUES (:NomL, :DateDebut, :DateFin, :AdresseLan, :ville, :nbTournois, :Nbvisiteurs, :PrixVisite, :AdresseSite, :Description, :AdresseWidget, :IdOrganisateur)");
+		$reponse->execute(array('NomL' => $nom,'DateDebut' => $dated ,'DateFin' => $datef ,'AdresseLan'=>$adres  ,'ville'=>$ville,'nbTournois'=>$nbTournois,'Nbvisiteurs'=>$nbv,'PrixVisite'=>$prixv,'AdresseSite'=>$adressS,'Description'=>$desc, 'AdresseWidget'=>$adressW, 'IdOrganisateur'=>$idOrganisateur));
 
 	}
 
@@ -56,10 +55,5 @@
 		return $donnees = $reponse->fetch();
 
 	}
-
-
-
-
-
 
 ?>
