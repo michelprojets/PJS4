@@ -204,7 +204,7 @@ function loshotelosAvecAmadeus(e){
 	//console.log("YEAAAAAAAAAAA" + datedebut +" "+ datefin);
 	$.ajax({
 	dataType: "json",
-	url: "http://api.sandbox.amadeus.com/v1.2/hotels/search-circle?latitude="+e.lat()+"&longitude="+e.lng()+"&radius=3&check_in="+datedebut+"&check_out="+datefin+"&currency=EUR&chain=RT&cy=EUR&number_of_results=50&apikey=NuUZ93jhWCOQ0ZPBXYhj7Dy9i27w9sXh",
+	url: "http://api.sandbox.amadeus.com/v1.2/hotels/search-circle?latitude="+e.lat()+"&longitude="+e.lng()+"&radius=12&check_in="+datedebut+"&check_out="+datefin+"&currency=EUR&chain=RT&cy=EUR&number_of_results=50&apikey=NuUZ93jhWCOQ0ZPBXYhj7Dy9i27w9sXh",
 	success: function(data) {
 		//console.log(data.results[0]);
 	//	description.innerHTML = "<h3 align='center'> Les hotels les plus proches : </h3>";
@@ -237,11 +237,11 @@ function createMarkerAmadeus(place) {
   google.maps.event.addListener(marker, 'mouseover', function() {
 	
 	// détail hotel avec mouseover
-	var detail = "Nom : " + place.property_name;
+	var detail = "<p>Nom : " + place.property_name;
 	detail+="</br> Prix du séjour : " + place.total_price.amount + " " + place.total_price.currency;
 	detail+="</br> Adresse de l'hôtel : " + place.address['line1'] + ', ' + place.address['city'];
 	detail+="</br> Téléphone : " + place.contacts[0].detail;
-	detail+="</br>";
+	detail+="</br></p>";
 	
     infowindow.setContent(detail);
     infowindow.open(map, this);

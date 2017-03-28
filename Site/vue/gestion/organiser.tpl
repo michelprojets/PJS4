@@ -77,7 +77,20 @@
 							<span class="info-bulle">Doit être un nombre avec deux chiffres après la "virgule" (représentée par un point)</span>
 						</div>
 						 <button  class="btn btn-primary col-sm-3" onclick="ajoutTn()">Ajouter</button>
-						 <div class="col-sm-12" id="afficherTn"></div>
+						 <div class="col-sm-12" id="afficherTn">
+							<table class="table table-striped">
+								<thead>
+								  <tr>
+									<th>Jeux</th>
+									<th>Nombre de Slots</th>
+									<th>Prix du Tournois</th>
+								  </tr>
+								</thead>
+								<tbody>
+									
+								</tbody>
+							  </table>
+						 </div>
   <!--   ////////////////////////////  ////////////////////:  ////////////////////////////    -->
 						<div class="form-group col-sm-offset-1 col-sm-4">
 							<label for="nbVisiteurs">Nombre de visiteurs autorisé :</label>

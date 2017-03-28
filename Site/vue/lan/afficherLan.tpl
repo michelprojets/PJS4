@@ -1,6 +1,6 @@
-<div id="Unelan" class ="container">
+<div id="Unelan" class ="container well">
   <h1 id="NomLan"><?php echo($lanPage['NomL']) ?></h1>
-  Adresse :<h2 id="adre">  <?php echo($lanPage['AdresseLan']) ?>,<?php echo($lanPage['VilleLAN']) ?></h2> <!-- rajouter pays-->
+  Adresse :<h2 id="adre">  <?php echo($lanPage['AdresseLan']) ?>, <?php echo($lanPage['VilleLAN']) ?></h2> <!-- rajouter pays-->
   Du<div id="datedebut"><?php echo($convertedDateDebut) ?></div>
   Au <div id="datefin"><?php echo($convertedDateFin) ?></div>
 

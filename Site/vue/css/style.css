@@ -12,7 +12,8 @@
 
 body {
 	background-image:url("../images/background.png");
-	background-size:100%;
+	/*background-size:100%;*/
+	background-size: cover;
 	background-attachment:fixed;
 }
 
@@ -71,7 +72,7 @@ body #page{
 /* --------------------------------------------- Footer ------------------------------------------------- */
 
 footer p {
-	color:#AAAAAA;
+
 	text-align:center;
 }
 
@@ -261,7 +262,7 @@ footer p {
 /*********************************************** Page d'une lan *****************************************/
 
 #Unelan{
-	background-color: white;
+	/*background-color: white;*/
 	margin-top: 10%;
 }
 
@@ -284,9 +285,14 @@ article h2, h4, p{
 	height: 500px;
 }
 
+#idMap p{
+	color: black;
+}
+
 #infoMap{
 	height: 500px;
 }
+
 
 #infoMap h3{
 	color: white;
@@ -320,6 +326,10 @@ article h2, h4, p{
 	
 }
 
+#idMapTtesLesLans p{
+	color: black;
+}
+
 #infoMapTtesLesLans{
 	height: 700px;
 	color : white;
@@ -328,6 +338,9 @@ article h2, h4, p{
 #infoMapTtesLesLans a{
 	color: white;
 }
+
+
+
 
 /*********************************************** Page erreur *****************************************/
 

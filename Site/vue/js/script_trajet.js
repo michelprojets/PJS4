@@ -76,6 +76,7 @@ function getTrain(){
 
       //  console.log("catch");
         res = true;
+		afficherResTrain();
     }
   //  console.log(" en dehors catch");
     afficherResTrain();
@@ -113,7 +114,7 @@ function verif(){
 
 function chercherTrajet(){
   //console.log($("#adre").html());
-  var villedepart = $("#adre").html().split(",");
+  var villedepart = $("#adre").html().split(", ");
   //  console.log(villedepart[1]);
   $("#choixgare").show();
   document.getElementById('resultatTrain').innerHTML ="";
@@ -132,7 +133,7 @@ function afficherResTrain(){
 
   if(  res == false ){
   //  typeof listeTrain.results == 'undefined'"NOTHING FOUND FOR REQUESTED CRITERIA"
-    document.getElementById('messageErreur').innerHTML ="Aucun trajet correspondant";
+    document.getElementById('messageErreur').innerText ="Aucun trajet correspondant";
     $("#choixgare").show();
     console.log("balbalabl");
   }

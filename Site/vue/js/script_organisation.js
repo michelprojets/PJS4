@@ -62,10 +62,25 @@ function ajoutTn(){
 
 function afficherTn(){
   var msg = "";
-  msg = $("#afficherTn").html()+" "+$("#jeuxselec").val()+" "+$("#nbslot").val()+" "+$("#prixtournoi").val()+"</br>" ;
+  select = document.getElementById('jeuxselec');
+  /*
+  msg = $("#afficherTn").html()+" "+select.options[select.selectedIndex].label+" "+$("#nbslot").val()+" "+$("#prixtournoi").val()+"</br>" ;
   $("#afficherTn").html(msg) ;
-
-
+  */
+    var tabTournois = document.querySelector("#afficherTn table tbody");
+    var tournois = document.createElement('tr');
+	var nomJeu = document.createElement('td');
+	nomJeu.appendChild(document.createTextNode(select.options[select.selectedIndex].label));
+	var nbEquipes = document.createElement('td');
+	nbEquipes.appendChild(document.createTextNode($("#nbslot").val()));
+	var prix = document.createElement('td');
+	prix.appendChild(document.createTextNode($("#prixtournoi").val()));
+	
+	tournois.appendChild(nomJeu);
+	tournois.appendChild(nbEquipes);
+	tournois.appendChild(prix);
+	tabTournois.appendChild(tournois);
+  
 }
 
 function enregistrerLan(){
@@ -135,6 +150,8 @@ $.post("index.php?controle=gestion&action=enregLan", dataObje ,retourlan);
       console.log("postlistetlan");
 		$.post("index.php?controle=gestion&action=tournois", dataObject ,retourfonct);
 	});
+	
+	document.location.href="index.php?controle=start&action=accueil";
 }
 
 function retourlan(){
@@ -213,7 +230,7 @@ function retourfonct(){
 	fonctions_controle['description'] = function(){
 		var champ = document.getElementsByName("description")[0];
 		var etatChamp = true;
-		if (champ.value.length < 10 || champ.value.length > 1000){
+		if (champ.value.length < 10 || champ.value.length > 2000){
 			etatChamp = false;
 		}
 		return modification_interactif(champ,etatChamp);
@@ -307,7 +324,7 @@ function retourfonct(){
 		var regex = /^((http|https):\/\/){1}(www[.])?([a-zA-Z0-9]|-)+([.][a-zA-Z0-9(-|\/|=|?)?]+)+$/;
 		return modification_interactif(champ,regex.test(champ.value));
 	};
-
+	
 	fonctions_controle['adresseWidget'] = function(){
 		var champ = document.getElementsByName('adresseWidget')[0];
 		var regex = /^((http|https):\/\/){1}(www[.])?([a-zA-Z0-9]|-)+([.][a-zA-Z0-9(-|\/|=|?)?]+)+$/;

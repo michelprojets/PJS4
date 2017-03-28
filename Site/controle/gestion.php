@@ -23,7 +23,7 @@
 			if (count($_POST)==0){
 				require("./vue/layout/layout.tpl") ;
 			}
-			else{ // v?rification d'abord s'il y a erreur de syntaxe
+			/*
 				if (!verif_syntax_organisation($nomLan,$dateDebut,$dateFin,$adresseLan,$villeLan,$nbTournois,$nbVisiteurs,$prixVisite,$adresseSite,$description,$adresseWidget)){
 					require("vue/layout/layout.tpl");
 				}
@@ -33,15 +33,20 @@
 					$nexturl = "index.php?controle=" . $controle . "&action=" . $action;
 					header ("Location:" . $nexturl);
 				}
-			}
+			*/
 		}
 	}
 
 	function enregLan(){
-		require("modele/lan.php");
-		require("modele/tournois.php");
-		
-		setLan($_POST["nomlan"],$_POST["datedebutlan"],$_POST["datefinlan"],$_POST["adresselan"],$_POST["villelan"],$_POST["editor1"],$_POST["nbvisiteur"],$_POST["prixvisitelan"],$_POST["adressesite"],$_POST["adressewidget"],$_POST["nbTournois"],$_SESSION['profil']['IdUtilisateur']);
+		if (!verif_syntax_organisation($_POST["nomlan"],$_POST["datedebutlan"],$_POST["datefinlan"],$_POST["adresselan"],$_POST["villelan"],$_POST["nbTournois"],$_POST["nbvisiteur"],$_POST["prixvisitelan"],$_POST["adressesite"],$_POST["editor1"])){
+			require("vue/layout/layout.tpl");
+		}
+		else {
+			require("modele/lan.php");
+			require("modele/tournois.php");
+			
+			setLan($_POST["nomlan"],$_POST["datedebutlan"],$_POST["datefinlan"],$_POST["adresselan"],$_POST["villelan"],$_POST["editor1"],$_POST["nbvisiteur"],$_POST["prixvisitelan"],$_POST["adressesite"],$_POST["adressewidget"],$_POST["nbTournois"],$_SESSION['profil']['IdUtilisateur']);				
+		}
 	}
 
 	function tournois(){
@@ -50,9 +55,10 @@
 		
 		$idLan = getIdLan($_POST["nomlan"],$_POST["datedebutlan"],$_POST["datefinlan"],$_POST["villelan"]);
 		setTournois($_POST["prix"], $_POST["nbslot"],$idLan["IdLan"], $_POST["idjeu"]);
+	
 	}
 
-	function verif_syntax_organisation($nomLan,$dateDebut,$dateFin,$adresseLan,$villeLan,$nbTournois,$nbVisiteurs,$prixVisite,$adresseSite,$description,$adresseWidget){
+	function verif_syntax_organisation($nomLan,$dateDebut,$dateFin,$adresseLan,$villeLan,$nbTournois,$nbVisiteurs,$prixVisite,$adresseSite,$description){
 		if (!preg_match("#^[\sa-zA-Z0-9??????]{2,35}$#", $nomLan)) {
 			return false;
 		}
@@ -62,7 +68,7 @@
 		if (!preg_match("#^[A-Z]{1}[a-z??????]{1,20}$#", $villeLan)) {
 			return false;
 		}
-		if (strlen($description) < 10 || strlen($description) > 1000) {
+		if (strlen($description) < 10 || strlen($description) > 2000) {
 			return false;
 		}
 		if (!check_date($dateDebut)) {
@@ -85,9 +91,6 @@
 			return false;
 		}
 		if (!preg_match("#^((http|https):\/\/){1}(www[.])?([a-zA-Z0-9]|-)+([.][a-zA-Z0-9(-|\/|=|?)?]+)+$#", $adresseSite)) {
-			return false;
-		}
-		if (!preg_match("#^((http|https):\/\/){1}(www[.])?([a-zA-Z0-9]|-)+([.][a-zA-Z0-9(-|\/|=|?)?]+)+$#", $adresseWidget)) {
 			return false;
 		}
 		return true;

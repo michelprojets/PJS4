@@ -102,7 +102,7 @@ function rechercheMot(){
 		for (tag of listeNomLans){
 			if (tag == mot){
 				valide = true;
-				carousel.style.display = 'none';
+				//carousel.style.display = 'none';
 				for (lan of listeLans){
 					if (lan.NomL == mot){
 						creationCase(lan.IdLan);
@@ -117,7 +117,7 @@ function rechercheMot(){
 				valide = true;
 				idJeuduTag =tag.IdJeu ;
 
-				carousel.style.display = 'none';
+				//carousel.style.display = 'none';
 
 				$.each(listeTournois,function(i){
 					if(listeTournois[i].IdJeu ==idJeuduTag ){
@@ -160,10 +160,10 @@ function creationCase(idLan){
 
 	for (lan of listeLans){
 		if (lan.IdLan == idLan){
+			
 			var divLan = document.createElement('div');
 			divLan.classList.add('lan');
 			divLan.classList.add('row');
-
 
 			var titre = document.createElement('span');
 			titre.classList.add("col-sm-offset-1")
@@ -187,8 +187,8 @@ function creationCase(idLan){
 			debutDescription.id = "description";
 			debutDescription.classList.add('col-sm-offset-1');
 			debutDescription.classList.add('col-sm-10');
-		//	italique.appendChild(document.createTextNode("Description : " + ((lan.Description.length>200)?(lan.Description.substring(0,200)+"..."):lan.Description)));
-			italique.innerHTML = (lan.Description.length>200)?(lan.Description.substring(0,200)+"..."):lan.Description;
+		//	italique.appendChild(document.createTextNode("Description : " + ((lan.Description.length>250)?(lan.Description.substring(0,250)+"..."):lan.Description)));
+			italique.innerHTML = (lan.Description.length>250)?(lan.Description.substring(0,250)+"..."):lan.Description;
 			debutDescription.appendChild(italique);
 			
 			divLan.appendChild(titre);

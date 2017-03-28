@@ -99,20 +99,20 @@ function codeAddress(adr, lan) {
 
 		//google.maps.event.addListener(marker, 'click', loshotelosAvecAmadeus(results[0].geometry.location));	on met pas les hotels
 
-		google.maps.event.addListener(marker, 'click', function(){
+		/*google.maps.event.addListener(marker, 'click', function(){
 
 			geoloc();
 			calculateAndDisplayRoute(directionsService, directionsDisplay, address);
 
-		});
+		});*/
 
 
 
 		// d�tail hotel avec mouseover
 		var detail = lan.NomL;
-		detail+="</br> Adresse : " + lan.AdresseLan;
+		detail+="<p> Adresse : " + lan.AdresseLan;
 		detail+="</br>Du " + lan.DateDebut +" au " + lan.DateFin;
-		detail+="</br>Prix : " + lan.PrixVisite;
+		detail+="</br>Prix : " + lan.PrixVisite + " </p>";
 
 
 		var infowindow = new google.maps.InfoWindow({
@@ -123,7 +123,7 @@ function codeAddress(adr, lan) {
 				if(description.innerHTML.indexOf(lan.NomL) == -1){
 					var niveauGris = 144;
 					
-					//infowindow.setContent(detail);
+					infowindow.setContent(detail);
 					infowindow.open(map, this);
 					description.innerHTML = htmlDesc(lan);
 					var r = niveauGris;
@@ -175,6 +175,7 @@ function htmlDesc(lan)
 {
 
 		var q = lan.NomL;
+		q+="</br> <a href= index.php?controle=lan&action=afficherLan&param=" + lan.IdLan + ">" + "Voir La Lan" + "</a>";
 		q+="</br> Adresse : " + lan.AdresseLan+ " " + lan.VilleLan;
 		q+="</br>Du " + lan.DateDebut +" au " + lan.DateFin;
 		q+="</br>Prix : " + lan.PrixVisite;

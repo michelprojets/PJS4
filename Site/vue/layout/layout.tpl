@@ -13,15 +13,17 @@
 		<title>Let's LAN</title>
 		<!--- css bootstrap --->
 		<link rel="stylesheet" href="vue/css/bootstrap.min.css">
-		<!--- css google --->
-		<link href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/themes/ui-darkness/jquery-ui.min.css" rel="stylesheet">
+		<!--- css google  		<link href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/themes/ui-darkness/jquery-ui.min.css" rel="stylesheet"> --->
+
+		<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/overcast/jquery-ui.css" type="text/css" rel="stylesheet" />
+		
 		<!--- css personnalisé --->
 		<link rel="stylesheet" href="vue/css/style.css">
 	</head>
 	<body>
 		<div id="page" class="container"> <!--- container général --->
 			<header class=""> <!--- header --->
-				<nav class="navbar navbar-inverse navbar-fixed-top">
+				<nav class="navbar navbar-default navbar-fixed-top">
 					<div class="container"> <!--- container du menu --->
 						<div class="container-fluid">
 							<div class="navbar-header">
@@ -59,7 +61,7 @@
 		<script src="vue/js/script.js"></script>
 		
 		<footer> <!--- footer --->
-			<nav class="navbar navbar-inverse navbar-fixed-bottom">
+			<nav class="navbar navbar-default navbar-fixed-bottom">
 				<li>
 					<p>© Copyright 2017 | IUT Paris Descartes</p>
 				</li>
