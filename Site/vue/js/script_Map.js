@@ -64,7 +64,7 @@ function codeAddress(adr) {
 		 //google.maps.event.addListener(marker, 'click', loshotelosAvecAmadeus(results[0].geometry.location));		 
 		
 		google.maps.event.addListener(marker, 'click', function(){
-		
+			removeAllCases();
 			loshotelosAvecAmadeus(results[0].geometry.location)
 			geoloc(); // pour connaitre la position de l'utilisateur
 			console.log(address + " dans addclicklistener");
@@ -141,7 +141,7 @@ function getDistanceEntreDeuxPoints(origin,destination,modeDeTransport){
     } else if (modeDeTransport == "WALKING") {
         moyenDeTransport = "marchant";
     } else if (modeDeTransport == "TRANSIT") {
-        moyenDeTransport = "transit";
+        moyenDeTransport = "train";
     } else {
 		moyenDeTransport = "voiture";
 	}
@@ -251,6 +251,17 @@ function createMarkerAmadeus(place) {
 		infowindow.close(map,this);
 	});
 	
+}
+
+function removeAllCases(){
+	divHotels = document.getElementById('infoMap');
+	var divHotels;
+	if (divHotels.hasChildNodes()){
+		while (div = divHotels.firstElementChild.nextElementSibling){
+			divHotels.removeChild(div);
+		}
+		divHotels.removeChild(divHotels.firstElementChild);
+	}
 }
 
 // pour la description des 10 premiers hotels

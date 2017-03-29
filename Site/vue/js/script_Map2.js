@@ -35,6 +35,13 @@ window.onload = function() {
 				
 				geoloc();
 				getLans(); // on r�cup�re toutes les lans
+				
+				var carteDiv = document.getElementById('infoMapTtesLesLans');
+				var titre = document.createElement('h4');
+				titre.appendChild(document.createTextNode("Voici toutes les LANs organisées (vous pouvez voir les détails de la LAN en passant le curseur sur le marqueur)"));
+				carteDiv.appendChild(titre);
+				
+				
 
 }
 
@@ -125,7 +132,9 @@ function codeAddress(adr, lan) {
 					
 					infowindow.setContent(detail);
 					infowindow.open(map, this);
-					description.innerHTML = htmlDesc(lan);
+				//	description.innerHTML = htmlDesc(lan);
+					removeAllCases();
+					htmlDesc(lan);
 					var r = niveauGris;
 					var g = niveauGris;
 					var b = niveauGris;
@@ -170,21 +179,92 @@ function codeAddress(adr, lan) {
       }
     });
 }
+
+function removeAllCases(){
+	divHotels = document.getElementById('infoMapTtesLesLans');
+	var divHotels;
+	if (divHotels.hasChildNodes()){
+		while (div = divHotels.firstElementChild.nextElementSibling){
+			divHotels.removeChild(div);
+		}
+		divHotels.removeChild(divHotels.firstElementChild);
+	}
+}
+
+function convertDate(date){
+	var tabDate = date.split("-");
+	date_francaise = tabDate[2] + "/" + tabDate[1] + "/" + tabDate[0];
+	return date_francaise;
+}
+
 // remplissage info lan
 function htmlDesc(lan)
 {
-
-		var q = lan.NomL;
-		q+="</br> <a href= index.php?controle=lan&action=afficherLan&param=" + lan.IdLan + ">" + "Voir La Lan" + "</a>";
-		q+="</br> Adresse : " + lan.AdresseLan+ " " + lan.VilleLan;
-		q+="</br>Du " + lan.DateDebut +" au " + lan.DateFin;
-		q+="</br>Prix : " + lan.PrixVisite;
-		q+="</br>Site : ";
-		q+= "<a href=https://"+lan.AdresseSite+">"+lan.AdresseSite+"</a>";
-		q+= "</br>" + lan.Description;
-		q+="</br>";
-
-		return q;
+	
+		var descriptionDiv = document.getElementById('infoMapTtesLesLans');
+		
+		var divLan = document.createElement('div');
+		divLan.classList.add('caseTrajet');
+		divLan.classList.add('lan');
+		divLan.classList.add('well');
+		divLan.classList.add('row');
+		
+		var titre = document.createElement('p');
+		titre.classList.add("col-sm-offset-1");
+		titre.classList.add("col-sm-10");
+		titre.classList.add("titre");
+		titre.appendChild(document.createTextNode("Nom : " + lan.NomL));
+		
+		var adresse = document.createElement('p');
+		adresse.classList.add("col-sm-offset-1");
+		adresse.classList.add("col-sm-10");
+		adresse.appendChild(document.createTextNode("Adresse : " + lan.AdresseLan + ", " + lan.VilleLAN));
+		
+		var dateDebut = document.createElement('p');
+		dateDebut.classList.add("col-sm-offset-1");
+		dateDebut.classList.add("col-sm-10");
+		dateDebut.appendChild(document.createTextNode("Date de début : " + convertDate(lan.DateDebut)));
+		
+		var dateFin = document.createElement('p');
+		dateFin.classList.add("col-sm-offset-1");
+		dateFin.classList.add("col-sm-10");
+		dateFin.appendChild(document.createTextNode("Date de fin : " + convertDate(lan.DateFin)));
+		
+		var prix = document.createElement('p');
+		prix.classList.add("col-sm-offset-1");
+		prix.classList.add("col-sm-10");
+		prix.appendChild(document.createTextNode("Prix de la visite : " + lan.PrixVisite + "€"));
+		
+		var description = document.createElement('p');
+		description.classList.add("col-sm-offset-1");
+		description.classList.add("col-sm-10");
+		description.appendChild(document.createTextNode("Description : "));
+		description.innerHTML += (lan.Description.length>250)?(lan.Description.substring(0,250)+"..."):lan.Description;
+		
+		var site = document.createElement('a');
+		site.classList.add("col-sm-offset-1");
+		site.classList.add("col-sm-10");
+		site.href = "https://" + lan.AdresseSite;
+		site.appendChild(document.createTextNode("Adresse du site : " + lan.AdresseSite));
+		
+		var bouton = document.createElement('a');
+		bouton.classList.add("col-sm-offset-4");
+		bouton.classList.add("col-sm-4");
+		bouton.classList.add("btn");
+		bouton.classList.add("btn-primary");
+		bouton.href = "index.php?controle=lan&action=afficherLan&param=" + lan.IdLan;
+		bouton.appendChild(document.createTextNode("Réserver"));
+		
+		divLan.appendChild(titre);
+		divLan.appendChild(adresse);
+		divLan.appendChild(dateDebut);
+		divLan.appendChild(dateFin);
+		divLan.appendChild(prix);
+		divLan.appendChild(description);
+		divLan.appendChild(site);
+		divLan.appendChild(bouton);
+		
+		descriptionDiv.appendChild(divLan);
 }
 
 function geoloc(){

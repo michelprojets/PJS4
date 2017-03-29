@@ -40,7 +40,7 @@
 									<li><a href="index.php?controle=compte&action=inscription"><span class="glyphicon glyphicon-user"></span>S'inscrire</a></li>
 									<li><a href="index.php?controle=compte&action=connexion"><span class="glyphicon glyphicon-log-in"></span>Se connecter</a></li>
 								<?php } else { ?>
-									<li><a><span class="glyphicon glyphicon-user"><?php echo(" Bonjour " . $_SESSION['profil']['Pseudo'] . " !");?></span></a></li>
+									<li><a id="login"><span class="glyphicon glyphicon-user"><?php echo(" Bonjour " . $_SESSION['profil']['Pseudo'] . " !");?></span></a></li>
 									<li><a href="index.php?controle=compte&action=deconnexion"><span class="glyphicon glyphicon-log-out"></span>Se déconnecter</a></li>
 								<?php } ?>
 							</ul>

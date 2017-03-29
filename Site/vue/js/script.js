@@ -3,7 +3,7 @@
 /* GENERAL */
 
 // fonction anonyme qui permet d'aggrandir les options du menu onmouseover
-
+/*
 (function(){
 	var boutonMenus = document.querySelectorAll("header nav .container-fluid ul li a");
 	for (var i=0; i<boutonMenus.length; ++i){
@@ -12,10 +12,11 @@
 	}
 					
 	function grandir(e){
-		e.target.style.fontSize="115%";
+		e.target.style.fontSize="109%";
 	}
 					
 	function retrecir(e){
-		e.target.style.fontSize="";
+		e.target.style.fontSize="100%";
 	}
 })();
+*/

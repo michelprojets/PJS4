@@ -1,5 +1,5 @@
-<div id="contact" class="row">
-  <article  class="col-sm-4">
+<div id="contact" class="row$">
+  <article  class="col-sm-4 well">
     <div><h2>Tanguy</h2> Mail : tanguyherserant@gmail.com</div>
     <div><h2>Michel</h2> Mail : michelyoeung150497@gmail.com</div>
     <div><h2>Pierre</h2> Mail : pierrerouzaud18@gmail.com</div>
