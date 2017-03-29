@@ -27,7 +27,7 @@
 					<div class="container"> <!--- container du menu --->
 						<div class="container-fluid">
 							<div class="navbar-header">
-								<a class="navbar-brand" href="#">Let's LAN</a>
+								<img class="img-responsive" src="vue/images/logo.png" alt="Let's Lan">
 							</div>
 							<ul class="nav navbar-nav">
 								<li><a href="index.php?controle=start&action=accueil"><span class="glyphicon glyphicon-home"></span>Accueil</a></li>

@@ -32,7 +32,7 @@
         <label for="exampleTextarea">Message</label>
         <textarea class="form-control" id="exampleTextarea"rows="5" placeholder="Votre message"></textarea>
       </div>
-      <button type="submit" class="btn btn-primary">Envoyer Mail</button>
+      <button type="submit" class="btn btn-primary col-sm-offset-5 col-sm-2">Envoyer</button>
     </form>
   </article>
 </div>

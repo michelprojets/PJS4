@@ -1,6 +1,7 @@
-
-		<div id="barre_recherche" onclick="startAuto()"> <!--- barre de recherche --->
-			<input type="search" class="col-sm-offset-3 col-sm-6 col-xs-12" placeholder="Tapez ici pour rechercher une LAN ...">
+		
+		<div id="barre_recherche"> <!--- barre de recherche --->
+			<h1> Let's Lan ! </h1>
+			<input type="search" class="col-sm-offset-3 col-sm-6 col-xs-12" placeholder="Tapez ici (jeu ou lan) pour rechercher une LAN..." onclick="startAuto()">
 			<button type="submit" class="btn btn-primary btn-sm "><span class="glyphicon glyphicon-search "></span></button>
 		</div> <!--- fin barre de recherche --->
 		<!--- carousel --->

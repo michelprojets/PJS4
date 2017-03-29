@@ -130,7 +130,7 @@ function rechercheMot(){
 			}
 		}
 		if (!valide){ // si le mot rentré dans la barre de recherche n'est pas un mot de tag
-			carousel.style.display = 'none';
+		//	carousel.style.display = 'none';
 			var divLan = document.createElement('div');
 			divLan.id = 'aucun_resultat';
 			divLan.classList.add('lan');

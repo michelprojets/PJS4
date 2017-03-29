@@ -57,7 +57,7 @@ function ajoutTn(){
 
   var tn = new tournoi($("#jeuxselec").val(),$("#nbslot").val(),$("#prixtournoi").val());
   listedesTournois.push(tn);
-  afficherTn()
+  afficherTn();
 }
 
 function afficherTn(){

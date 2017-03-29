@@ -19,6 +19,15 @@ body {
 
 /* --------------------------------------------- Menu --------------------------------------------------- */
 
+header img{
+	width:25%;
+	margin:auto;
+}
+
+#barre_recherche h1{
+	text-align:center;
+}
+
 header nav .container-fluid ul li a span {
 	padding-right:10px;
 }
@@ -41,7 +50,7 @@ header #login:hover {
 @media screen and (min-width: 1200px)
 {
 	header nav .container-fluid ul li a:hover {
-		font-size:125%;
+		font-size:115%;
 	}
 }
 
@@ -58,6 +67,18 @@ header #login:hover {
 
 	.navbar-nav li{
 		text-align:center;
+	}
+	
+	header img{
+		width:8%;
+		margin:auto;
+	}
+}
+
+@media screen and (max-width: 500px)
+{
+	header img{
+		margin:auto;
 	}
 }
 
@@ -92,10 +113,10 @@ footer p {
 
 /* --------------------------------------------- Barre de navigation ------------------------------------ */
 
-#barre_recherche {
+#barre_recherche h1{
 	margin-top:25%;
 	margin-bottom:5%;
-
+	color:white;
 }
 
 #barre_recherche input{
@@ -104,6 +125,10 @@ footer p {
 
 #barre_recherche button{
 	height:40px;
+}
+
+#barre_recherche {
+	margin-bottom:10%;
 }
 
 @media screen and (max-width: 992px)
@@ -152,11 +177,10 @@ footer p {
 	margin-bottom: 5%;
 	padding-top:2%;
 	padding-bottom:2%;
-	background-color:rgba(100,100,100,0.9);
+	background-color:rgba(100,100,100,0.8);
 }
 
 #lans_recherche .lan span, blockquote{
-
 	color:#EEEEEE;
 }
 
@@ -175,7 +199,7 @@ footer p {
 }
 
 #lans_recherche .mouse-over {
-	background-color: rgba(100,100,100,0.75);
+	background-color: rgba(100,100,100,0.6);
 	border-width:4px;
 	border-color:white;
 	border-style:solid;
@@ -202,7 +226,7 @@ footer p {
 
 #formulaire{
 	margin-top:20%;
-	margin-bottom:20%;
+	margin-bottom:10%;
 }
 
 #formulaire legend{
@@ -396,6 +420,18 @@ article h2, h4, p{
 	margin-top:10%;
 }
 
+#Unelan {
+	margin-top: 15%;
+	margin-bottom: 10%;
+}
+
+@media screen and (max-width: 1200px)
+{
+	#Unelan {
+		margin-top: 30%;
+	}
+}
+
 /*********************************************** Page erreur *****************************************/
 
 #erreur{
@@ -409,6 +445,27 @@ article h2, h4, p{
 	color :white;
 }
 
+@media screen and (max-width: 1200px)
+{
+	#contact{
+		margin-top: 25%;
+	}
+}
+
+@media screen and (max-width: 992px)
+{
+	#contact{
+		margin-top: 40%;
+	}
+}
+
+@media screen and (max-width: 768px)
+{
+	#contact{
+		margin-top: 10%;
+	}
+}
+
 /*********************************************** Page organisation *************************************************/
 
 #formulaire #description span{
@@ -416,7 +473,24 @@ article h2, h4, p{
 }
 
 #formulaire .glyphicon-euro {
-	color:black;
+	color:white;
+}
+
+#tournois_div{
+	border-width:4px;
+	border-color:white;
+	border-style:solid;
+	margin-top:5%;
+	margin-bottom:5%;
+}
+
+#tournois_div h4{
+	text-align:center;
+	margin-bottom:5%;
+}
+
+#tournois_div a{
+	margin-top:3.5%;
 }
 
 /************************************************ Trajet *************************************************************/

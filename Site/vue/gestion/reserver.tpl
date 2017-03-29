@@ -1,7 +1,7 @@
-<h2 class="display-4">Hotel et Trajet </h2>
 <!--- Carte--->
-<div id="Unelan" class ="container">
-	<div id ="hotel" class="row ">
+<div id="Unelan" class ="container well">
+	<h3>Réserver une LAN</h3>
+	<div id ="hotel" class="row">
 	  <div id="idMapTtesLesLans" class="col-md-7 well "></div>
 	  <div id="infoMapTtesLesLans"class="col-md-5 well" style='overflow-y:scroll'></div>
 	</div>

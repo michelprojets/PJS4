@@ -55,43 +55,6 @@
 							<span class="col-sm-offset-4 col-sm-7 info-bulle">Respecter le format jj/mm/aaaa et la date doit être supérieure à la date d'aujourd'hui</span>
 							<span id="respectDebutFin" class="col-sm-offset-4 col-sm-7 info-bulle">La date de fin doit être supérieure à la date de début</span>
 						</div>
-  <!--   ////////////////////////////  Tournois     ////////////////////////////                    -->
-						<div class="form-group col-sm-3">
-		          <label for="hDepart">Jeu</label>
-		          <select class="form-control" id="jeuxselec">
-		          </select>
-		        </div>
-						<div class="form-group col-sm-3">
-							<label  for="nomLan">Nombre de slot</label>
-							<div class="controle">
-								<input class="form-control" type="text" name="nomLan" placeholder="Nombre de slot" id="nbslot">
-							</div>
-							<span class="col-sm-offset-4 col-sm-7 info-bulle">Entre 2 et 35 caractères, peut comporter lettres (é/è/ù/î/à/ô possibles), chiffres et espaces</span>
-						</div>
-						<div class="form-group col-sm-3">
-							<label for="prixVisite">Prix du tournois (en euros) :</label>
-							<div class="input-group controle">
-								<input class="form-control" type="text" name="prixVisite" placeholder="Prix de la visite (en euros)" id="prixtournoi">
-								<span class="input-group-addon glyphicon glyphicon-euro"></span>
-							</div>
-							<span class="info-bulle">Doit être un nombre avec deux chiffres après la "virgule" (représentée par un point)</span>
-						</div>
-						 <button  class="btn btn-primary col-sm-3" onclick="ajoutTn()">Ajouter</button>
-						 <div class="col-sm-12" id="afficherTn">
-							<table class="table table-striped">
-								<thead>
-								  <tr>
-									<th>Jeux</th>
-									<th>Nombre de Slots</th>
-									<th>Prix du Tournois</th>
-								  </tr>
-								</thead>
-								<tbody>
-									
-								</tbody>
-							  </table>
-						 </div>
-  <!--   ////////////////////////////  ////////////////////:  ////////////////////////////    -->
 						<div class="form-group col-sm-offset-1 col-sm-4">
 							<label for="nbVisiteurs">Nombre de visiteurs autorisé :</label>
 							<div class="controle">
@@ -99,7 +62,7 @@
 							</div>
 							<span class="info-bulle">Doit être un nombre entre 10 et 10000</span>
 						</div>
-						<div class="form-group col-sm-offset-6 col-sm-4">
+						<div class="form-group col-sm-offset-1 col-sm-4">
 							<label for="prixVisite">Prix de la visite (en euros) :</label>
 							<div class="input-group controle">
 								<input class="form-control" type="text" name="prixVisite" placeholder="Prix de la visite (en euros)"id="prixvisitelan">
@@ -121,10 +84,53 @@
 							</div>
 							<span class="col-sm-offset-4 col-sm-7 info-bulle">Doit respecter le format d'une adresse de site web (ex: "http://[...].fr")</span>
 						</div>
+						
+					 <!--   ////////////////////////////  Tournois     ////////////////////////////                    -->
+					 
+					<div id="tournois_div" class="row col-sm-offset-1 col-sm-10">
+						<h4 class="col-sm-offset-4 col-sm-4">Ajouter des tournois</h4>
+						<div class="form-group col-sm-6">
+						  <label for="hDepart">Jeu :</label>
+						  <select class="form-control" id="jeuxselec">
+						  </select>
+						</div>
+						<div class="form-group col-sm-6">
+							<label  for="nomLan">Nombre de slot :</label>
+							<div class="controle">
+								<input class="form-control" type="text" name="nomLan" placeholder="Nombre de slot" id="nbslot">
+							</div>
+							<span class="col-sm-offset-4 col-sm-7 info-bulle">Entre 2 et 35 caractères, peut comporter lettres (é/è/ù/î/à/ô possibles), chiffres et espaces</span>
+						</div>
+						<div class="form-group col-sm-6">
+							<label for="prixVisite">Prix du tournois (en euros) :</label>
+							<div class="input-group controle">
+								<input class="form-control" type="text" name="prixVisite" placeholder="Prix de la visite (en euros)" id="prixtournoi">
+								<span class="input-group-addon glyphicon glyphicon-euro"></span>
+							</div>
+							<span class="info-bulle">Doit être un nombre avec deux chiffres après la "virgule" (représentée par un point)</span>
+						</div>
+						 <a class="btn btn-primary col-sm-offset-2 col-sm-2" onclick="ajoutTn()">Ajouter</a>
+						 <div class="col-sm-12" id="afficherTn">
+							<table class="table table-striped">
+								<thead>
+								  <tr>
+									<th>Jeux</th>
+									<th>Nombre de Slots</th>
+									<th>Prix du Tournois</th>
+								  </tr>
+								</thead>
+								<tbody>
+									
+								</tbody>
+							  </table>
+						 </div>
+					</div>
+					<!--   ////////////////////////////  ////////////////////:  ////////////////////////////    -->
 						<div class="boutons">
 							<button class="col-sm-offset-2 col-sm-4 btn btn-primary" type="submit">Valider</button>
 							<button class="col-sm-offset-1 col-sm-3 btn btn-primary" type="reset">Réinitialiser</button>
 						</div>
+					
 					</fieldset>
 				</form>
 			</div> <!--- fin formulaire --->
