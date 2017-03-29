@@ -66,10 +66,10 @@
       <li><a href="#tabs-2">Train</a></li>
     </ul>
     <div id="tabs-1" class="row ">
-      Auncun Trajet pour le moment
+      Aucun trajet pour le moment
     </div>
     <div id="tabs-2" class="row">
-      <p id="messageErreur">Auncun Trajet pour le moment</p>
+      <p id="messageErreur">Aucun trajet pour le moment</p>
       <div id="resultatTrain"></div>
       <div id="choixgare">
         <div class="form-group col-sm-4 col-sm-offset-2">
