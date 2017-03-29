@@ -62,7 +62,7 @@
 							</div>
 							<span class="info-bulle">Doit être un nombre entre 10 et 10000</span>
 						</div>
-						<div class="form-group col-sm-offset-1 col-sm-4">
+						<div id="prixV" class="form-group col-sm-offset-1 col-sm-4">
 							<label for="prixVisite">Prix de la visite (en euros) :</label>
 							<div class="input-group controle">
 								<input class="form-control" type="text" name="prixVisite" placeholder="Prix de la visite (en euros)"id="prixvisitelan">
@@ -82,7 +82,7 @@
 							<div class="controle col-sm-7">
 								<input class="form-control" type="text" name="adresseWidget" placeholder="Adresse widget réservation"id="adressewidget">
 							</div>
-							<span class="col-sm-offset-4 col-sm-7 info-bulle">Doit respecter le format d'une adresse de site web (ex: "http://[...].fr")</span>
+							<span class="col-sm-offset-4 col-sm-7 info-bulle">Doit respecter le format d'un widget</span>
 						</div>
 						
 					 <!--   ////////////////////////////  Tournois     ////////////////////////////                    -->
@@ -91,20 +91,19 @@
 						<h4 class="col-sm-offset-4 col-sm-4">Ajouter des tournois</h4>
 						<div class="form-group col-sm-6">
 						  <label for="hDepart">Jeu :</label>
-						  <select class="form-control" id="jeuxselec">
-						  </select>
+						  <select class="form-control" id="jeuxselec"></select>
 						</div>
 						<div class="form-group col-sm-6">
 							<label  for="nomLan">Nombre de slot :</label>
 							<div class="controle">
-								<input class="form-control" type="text" name="nomLan" placeholder="Nombre de slot" id="nbslot">
+								<input class="form-control" type="text" name="nbSlots" placeholder="Nombre de slot" id="nbslot">
 							</div>
-							<span class="col-sm-offset-4 col-sm-7 info-bulle">Entre 2 et 35 caractères, peut comporter lettres (é/è/ù/î/à/ô possibles), chiffres et espaces</span>
+							<span class="info-bulle">Doit être un nombre compris entre 2 et 20</span>
 						</div>
 						<div class="form-group col-sm-6">
 							<label for="prixVisite">Prix du tournois (en euros) :</label>
 							<div class="input-group controle">
-								<input class="form-control" type="text" name="prixVisite" placeholder="Prix de la visite (en euros)" id="prixtournoi">
+								<input class="form-control" type="text" name="prixTournois" placeholder="Prix de la visite (en euros)" id="prixtournoi">
 								<span class="input-group-addon glyphicon glyphicon-euro"></span>
 							</div>
 							<span class="info-bulle">Doit être un nombre avec deux chiffres après la "virgule" (représentée par un point)</span>

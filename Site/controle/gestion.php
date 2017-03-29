@@ -50,22 +50,26 @@
 	}
 
 	function tournois(){
-		require("modele/lan.php");
-		require("modele/tournois.php");
-		
-		$idLan = getIdLan($_POST["nomlan"],$_POST["datedebutlan"],$_POST["datefinlan"],$_POST["villelan"]);
-		setTournois($_POST["prix"], $_POST["nbslot"],$idLan["IdLan"], $_POST["idjeu"]);
-	
+		if (!verif_syntax_tournois($_POST["nbslot"],$_POST["prix"])){
+			require("vue/layout/layout.tpl");
+		}
+		else {
+			require("modele/lan.php");
+			require("modele/tournois.php");
+			
+			$idLan = getIdLan($_POST["nomlan"],$_POST["datedebutlan"],$_POST["datefinlan"],$_POST["villelan"]);
+			setTournois($_POST["prix"], $_POST["nbslot"],$idLan["IdLan"], $_POST["idjeu"]);
+		}
 	}
 
 	function verif_syntax_organisation($nomLan,$dateDebut,$dateFin,$adresseLan,$villeLan,$nbTournois,$nbVisiteurs,$prixVisite,$adresseSite,$description){
-		if (!preg_match("#^[\sa-zA-Z0-9??????]{2,35}$#", $nomLan)) {
+		if (!preg_match("#^[\sa-zA-Z0-9éèùîàô]{2,35}$#", $nomLan)) {
 			return false;
 		}
-		if (!preg_match("#^[\sa-zA-Z0-9??????]{8,35}$#", $adresseLan)) {
+		if (!preg_match("#^[\sa-zA-Z0-9éèùîàô\-]{8,35}$#", $adresseLan)) {
 			return false;
 		}
-		if (!preg_match("#^[A-Z]{1}[a-z??????]{1,20}$#", $villeLan)) {
+		if (!preg_match("#^[A-Z]{1}[a-zéèùîàô]{1,20}$#", $villeLan)) {
 			return false;
 		}
 		if (strlen($description) < 10 || strlen($description) > 2000) {
@@ -91,6 +95,16 @@
 			return false;
 		}
 		if (!preg_match("#^((http|https):\/\/){1}(www[.])?([a-zA-Z0-9]|-)+([.][a-zA-Z0-9(-|\/|=|?)?]+)+$#", $adresseSite)) {
+			return false;
+		}
+		return true;
+	}
+	
+	function verif_syntax_tournois($nbSlots, $prixTournois){
+		if (intval($nbSlots) < 2 || intval($nbVisiteurs) > 20){
+			return false;
+		}
+		if (!preg_match("#^[0-9]+[.]{1}[0-9]{2}$#", $prixTournois)) {
 			return false;
 		}
 		return true;

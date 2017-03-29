@@ -55,9 +55,15 @@ function insererJeux(){
 
 function ajoutTn(){
 
-  var tn = new tournoi($("#jeuxselec").val(),$("#nbslot").val(),$("#prixtournoi").val());
-  listedesTournois.push(tn);
-  afficherTn();
+	var tn = new tournoi($("#jeuxselec").val(),$("#nbslot").val(),$("#prixtournoi").val());
+	listedesTournois.push(tn);
+	afficherTn();
+ // resetTournois();
+}
+
+function resetTournois(){
+	document.getElementById('nbslot').value = "";
+	document.getElementById('prixtournoi').value = "";
 }
 
 function afficherTn(){
@@ -217,7 +223,7 @@ function retourfonct(){
 
 	fonctions_controle['adresseLan'] = function(){
 		var champ = document.getElementsByName("adresseLan")[0];
-		var regex = /^[\sa-zA-Z0-9éèùîàô]{8,35}$/;
+		var regex = /^[\sa-zA-Z0-9éèùîàô\-]{8,35}$/;
 		return modification_interactif(champ,regex.test(champ.value));
 	};
 
@@ -327,7 +333,24 @@ function retourfonct(){
 	
 	fonctions_controle['adresseWidget'] = function(){
 		var champ = document.getElementsByName('adresseWidget')[0];
-		var regex = /^((http|https):\/\/){1}(www[.])?([a-zA-Z0-9]|-)+([.][a-zA-Z0-9(-|\/|=|?)?]+)+$/;
+		return true; // pas de vérification car champ non obligatoire
+	};
+	
+	fonctions_controle['nbSlots'] = function(){
+		var champ = document.getElementsByName("nbSlots")[0];
+		var regex = /^[0-9]+$/;
+		var etatChamp = false;
+		if (regex.test(champ.value)){
+			if (parseInt(champ.value) >= 2 && parseInt(champ.value) <= 20){
+				etatChamp = true;
+			}
+		}
+		return modification_interactif(champ,etatChamp);
+	};
+	
+	fonctions_controle['prixTournois'] = function(){
+		var champ = document.getElementsByName("prixTournois")[0];
+		var regex = /^[0-9]+[.]{1}[0-9]{2}$/;
 		return modification_interactif(champ,regex.test(champ.value));
 	};
 

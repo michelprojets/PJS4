@@ -43,9 +43,9 @@
 
 	function setLan($nom,$dated,$datef,$adres,$ville,$desc,$nbv,$prixv,$adressS,$adressW,$nbTournois,$idOrganisateur){
 		require("connect.php");
-		$reponse = $bdd->prepare("INSERT INTO LAN (NomL, DateDebut, DateFin, AdresseLan,VilleLAN,NbTournois,Nbvisiteurs, PrixVisite, AdresseSite, Description, AdresseWidget,IdOrganisateur)
-		VALUES (:NomL, :DateDebut, :DateFin, :AdresseLan, :ville, :nbTournois, :Nbvisiteurs, :PrixVisite, :AdresseSite, :Description, :AdresseWidget, :IdOrganisateur)");
-		$reponse->execute(array('NomL' => $nom,'DateDebut' => $dated ,'DateFin' => $datef ,'AdresseLan'=>$adres  ,'ville'=>$ville,'nbTournois'=>$nbTournois,'Nbvisiteurs'=>$nbv,'PrixVisite'=>$prixv,'AdresseSite'=>$adressS,'Description'=>$desc, 'AdresseWidget'=>$adressW, 'IdOrganisateur'=>$idOrganisateur));
+		$reponse = $bdd->prepare("INSERT INTO LAN (NomL, DateDebut, DateFin, AdresseLan,VilleLAN,NbTournois,NbVisiteurs, PrixVisite, AdresseSite, Description, AdresseWidget,IdOrganisateur)
+		VALUES (:NomL, :DateDebut, :DateFin, :AdresseLan, :ville, :nbTournois, :NbVisiteurs, :PrixVisite, :AdresseSite, :Description, :AdresseWidget, :IdOrganisateur)");
+		$reponse->execute(array('NomL' => $nom,'DateDebut' => $dated ,'DateFin' => $datef ,'AdresseLan'=>$adres  ,'ville'=>$ville,'nbTournois'=>$nbTournois,'NbVisiteurs'=>$nbv,'PrixVisite'=>$prixv,'AdresseSite'=>$adressS,'Description'=>$desc, 'AdresseWidget'=>$adressW, 'IdOrganisateur'=>$idOrganisateur));
 
 	}
 
