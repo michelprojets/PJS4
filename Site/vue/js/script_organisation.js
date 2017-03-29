@@ -281,10 +281,24 @@ function retourfonct(){
 	fonctions_controle['respectDebutFin'] = function(){
 		var champDebut = document.getElementsByName("dateDebut")[0];
 		var champFin = document.getElementsByName("dateFin")[0];
-
+		
+		var dateDebut_normalisee;
+		var dateFin_normalisee;
+		var regex = /^[0-9]{2}\/[0-9]{2}\/[0-9]{4}$/;
+		if (regex.test(champDebut.value) && regex.test(champFin.value)){
+			var tabChampDebut = champDebut.value.split("/");
+			var tabChampFin = champFin.value.split("/");
+			dateDebut_normalisee = tabChampDebut[2] + "-" + tabChampDebut[1] + "-" + tabChampDebut[0];
+			dateFin_normalisee = tabChampFin[2] + "-" + tabChampFin[1] + "-" + tabChampFin[0];
+		}
+		else{
+			dateDebut_normalisee = champDebut.value;
+			dateFin_normalisee = champFin.value;
+		}
+		
 		if (fonctions_controle['dateDebut']() && fonctions_controle['dateFin']()){ // si on a renseigné correctement les deux dates
-			var dateDebut = new Date(champDebut.value);
-			var dateFin = new Date(champFin.value);
+			var dateDebut = new Date(dateDebut_normalisee);
+			var dateFin = new Date(dateFin_normalisee);
 			if (dateDebut.getTime() <= dateFin.getTime()){
 				document.getElementById("respectDebutFin").style.display = "none";
 				champFin.classList.remove("problem");
